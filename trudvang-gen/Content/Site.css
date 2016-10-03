@@ -36,7 +36,7 @@ body
     background-repeat: no-repeat;
     background-size: cover;
     color: #fefefe;
-    font-family: 'Asul-Regular';
+    font-family: 'Cabin';
     font-size: 100% !important;
     line-height: 1.25;
 }
@@ -82,7 +82,7 @@ h1
 
 h2
 {
-    font-family: "Cabin";
+    font-family: "Asul-Regular";
     font-size: 4rem;
     font-weight: normal;
     margin-top: -1.5rem;
