@@ -1,0 +1,62 @@
+﻿body
+{
+}
+
+h1, h2, h3, h4,h5
+{
+    color: #b4ff00;
+}
+
+h5
+{
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.modules p
+{
+    font-family: "ArcherPro-Medium";
+    border-bottom: 0.0625rem solid #b4ff00;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+}
+
+.modules p strong
+{
+    /*color: #ff004d;*/
+    font-weight: bold;
+    font-family: "FuturaStd-Book";
+    text-transform: uppercase;
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th
+{
+    background-color: #383e46;
+}
+.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th
+{
+    background-color: #626c7a;
+}
+
+th a,th a:visited,th a:focus
+{
+    color: #b4ff00;
+    text-decoration: none;
+}
+th a:hover,th a:active
+{
+    color:#fefefe;
+    text-decoration: none;
+}
+
+.visuals-container
+{
+    position: relative;
+}
+
+.visuals-container-image
+{
+    position: relative;
+    width: 100%;
+}

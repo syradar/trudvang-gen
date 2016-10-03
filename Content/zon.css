@@ -1,0 +1,37 @@
+﻿body {
+}
+
+h1,h2,h3,h4
+{
+    color: #e58900;
+}
+
+.modules img
+{
+    width: 100%;
+}
+
+.modules p
+{
+    font-family: "FuturaStd-Book";
+    border-bottom: 0.0625rem solid #e58900;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+}
+
+.modules p strong
+{
+    /*color: #ff004d;*/
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.paragraph-header
+{
+    color: #f00;
+}
+span::first-letter
+{
+    text-transform: uppercase !important;
+    color: #00f !important;
+}
