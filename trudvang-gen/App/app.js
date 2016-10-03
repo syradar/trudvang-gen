@@ -671,19 +671,19 @@ app.controller("appController",
     "$scope", function($scope) {
         $scope.Links = [
             {
-                name: "Zonen",
+                name: "Name Generator",
                 path: "zonen.html"
             }, {
-                name: "Robot",
+                name: "?",
                 path: "robot.html"
             }, {
-                name: "Faror",
+                name: "?",
                 path: "faror.html"
             }, {
-                name: "Prylar",
+                name: "?",
                 path: "prylar.html"
             }, {
-                name: "Genlab Alfa",
+                name: "?",
                 path: "genlab_moten.html"
             }
         ];

@@ -4,7 +4,6 @@
 
 h1, h2, h3, h4,h5
 {
-    color: #b4ff00;
 }
 
 h5
@@ -16,8 +15,7 @@ h5
 
 .modules p
 {
-    font-family: "ArcherPro-Medium";
-    border-bottom: 0.0625rem solid #b4ff00;
+    font-family: "Cabin";
     box-sizing: border-box;
     margin-bottom: 1rem;
 }
@@ -26,7 +24,7 @@ h5
 {
     /*color: #ff004d;*/
     font-weight: bold;
-    font-family: "FuturaStd-Book";
+    font-family: "Cabin";
     text-transform: uppercase;
 }
 
