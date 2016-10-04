@@ -290,7 +290,13 @@ function Thing() {
 
     return this;
 }
+function Name() {
+    var name = {};
+    var helper = new Helper();
+    var self = this;
 
+    return this;
+}
 function Danger() {
     var danger = {};
     var helper = new Helper();
@@ -624,8 +630,8 @@ function Danger() {
 
 function DataStore() {
     var data = {};
-    if (typeof window.generalData !== "undefined" || window.generalData !== null) {
-        data.General = window.generalData;
+    if (typeof window.nameData !== "undefined" || window.nameData !== null) {
+        data.Names = window.nameData;
     }
     if (typeof window.zonenData !== "undefined" || window.zonenData !== null) {
         data.Zonen = window.zonenData;
@@ -664,7 +670,7 @@ function DataStore() {
     return this;
 }
 
-var app = angular.module("robotgen", ["ngSanitize"]);
+var app = angular.module("trudvangHelper", ["ngSanitize"]);
 
 app.controller("appController",
 [
@@ -672,7 +678,7 @@ app.controller("appController",
         $scope.Links = [
             {
                 name: "Name Generator",
-                path: "zonen.html"
+                path: "namegen.html"
             }, {
                 name: "?",
                 path: "robot.html"

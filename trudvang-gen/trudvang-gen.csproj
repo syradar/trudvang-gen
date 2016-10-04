@@ -66,6 +66,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\data-namegen.js" />
     <Content Include="packages.config" />
     <Content Include="Content\Fonts\fontawesome-webfont.eot" />
     <Content Include="Content\Fonts\fontawesome-webfont.ttf" />
@@ -121,7 +122,7 @@
     <Content Include="faror.html" />
     <Content Include="genlab_moten.html" />
     <Content Include="index.html" />
-    <Content Include="prylar.html" />
+    <Content Include="namegen.html" />
     <Content Include="robot.html" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
