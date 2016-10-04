@@ -167,7 +167,8 @@ h4
 .container-content
 {
     background-color: #faf7f4;
-    height: calc(100% - 52px);
+    min-height: calc(100% - 52px);
+    height: auto;
 }
 
 .masthead
@@ -238,8 +239,7 @@ h4
 
 .names
 {
-    min-height: 20rem;
-}
+    }
 
 .names h3
 {
