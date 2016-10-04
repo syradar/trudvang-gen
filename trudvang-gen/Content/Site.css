@@ -23,7 +23,10 @@
        url('Fonts/Asul-Bold.ttf') format('truetype'),
        url('Fonts/Asul-Bold.svg#Asul-Bold') format('svg');
 }
-
+html,body
+{
+    height: 100%;
+}
 html
 {
     font-size: 100% !important;
@@ -34,8 +37,10 @@ body
     background-color: #24282d;
     background-image: url("Images/bg_urkult_sunset.jpg");
     background-repeat: no-repeat;
+    -ms-background-size: cover;
     background-size: cover;
-    color: #fefefe;
+    background-attachment: fixed;
+    color: #24282d;
     font-family: 'Cabin';
     font-size: 100% !important;
     line-height: 1.25;
@@ -71,12 +76,13 @@ textarea
     max-width: 280px;
 }
 
-
 h1
 {
     font-family: "bilibinregular";
     font-size: 4rem;
     text-transform: uppercase;
+    color: #9f4234;
+    text-align: center;
 }
 .frontpage h1
 {
@@ -87,23 +93,26 @@ h1
 .frontpage h2
 {
     text-align: center;
+    margin-top: -1.5rem;
+    letter-spacing: 2rem;
+    font-size: 4rem;
 }
 
 h2
 {
-    font-family: "Asul-Regular";
-    font-size: 4rem;
+    color: #57563c;
+    font-family: "Asul-Bold";
+    font-size: 2.5rem;
     font-weight: normal;
-    margin-top: -1.5rem;
     text-transform: uppercase;
-    letter-spacing: 2rem;
 }
 
 h3
 {
-    font-family: "Asul-Bold";
+    font-family: "Cabin";
     font-size: 1.5rem;
     font-weight: bold;
+    font-variant: all-small-caps;
 }
 
 h4
@@ -126,7 +135,7 @@ h4
 }
 .frontpage div
 {
-    max-width: 50%;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -138,163 +147,108 @@ h4
     font-size: 2rem;
 }
 
-
-h1, h2,.outlined p
+.outlined h1, .outlined h2,.outlined p
 {
+    color: #fefefe;
     text-shadow: 0 0 1px #000,0 0 1px #000,0 0 1px #000,0 0 1px #000,0 0 1px #000,0 0 1px #000,0 0 1px #000,0 0 1px #000,0 0 1px #000;
     -webkit-font-smoothing: antialiased;
-  
-  
-}
-.robot-visuals
-{
-    position: relative;
 }
 
-.part
+.frontpage p.small
 {
-    position: absolute;
+    font-size: 0.75rem;
+    text-align: left!important;
+}
+.container-app
+{
+
 }
 
-.part-head
+.container-content
 {
-    z-index: 4;
+    background-color: #faf7f4;
+    height: calc(100% - 52px);
 }
 
-.part-torso
+.masthead
 {
-    z-index: 3;
+
 }
 
-.part-image
+.navbar
 {
-    position: relative;
-    width: 100%;
+    margin-bottom: 0;
+    -webkit-box-shadow:0.5rem 0 1rem #24282d;
+    -ms-box-shadow:0.5rem 0 1rem #24282d;
+    box-shadow:0.5rem 0 1rem #24282d;
+    -ms-border-radius: 0;
+    border-radius: 0;
 }
 
-.part-image > div
+.trudvang-teaser
 {
+    color: #818fa1!important;
+    color: #b8cbe3!important;
+}
+.button-trudvang-group
+{
+    display: flex;
     padding: 0;
+    margin: 0;
+    -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-align-items: stretch;
+  align-items: stretch;
 }
 
-.part-image img
+.button-trudvang
 {
     display: block;
-    height: auto;
-    margin: 0 auto;
-    max-width: 100%;
-    min-height: 185px;
-}
-
-.part-image > .navigation
-{
-    bottom: 50%;
-    cursor: pointer;
-    font-size: 3rem;
-    left: 0;
-    position: absolute;
+    flex-grow: 1;
     text-align: center;
-    top: 25%;
-    width: 15%;
-    z-index: 5;
-}
-
-.part-image > .navigation:hover
-{
-    background-color: #fefefe;
-    color: #24282d;
-}
-
-.navigation.right
-{
-    left: auto;
-    right: 0;
-}
-
-.navigation span
-{
-    margin-left: -1.5rem;
-    margin-top: -2.125rem;
-    position: absolute;
-    top: 50%;
-}
-
-.col-xs-2.col-md-4
-{
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-}
-
-.rbt-btn
-{
-    border: 0.25rem solid #fefefe;
+    margin-right: 0.5rem;
+    padding: 0.5rem;
+    background-color: #9f4234;
+    color: #fefefe;
+    border: 0.125rem solid #712f25;
+    -ms-border-radius: 0.25rem;
+    border-radius: 0.25rem;
+    box-sizing: border-box;
+    font-size: 1.25rem;
     cursor: pointer;
-    padding: 0.25rem;
+    font-family: "Cabin";
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.button-trudvang:hover
+{
+    background-color: #712f25;
+}
+.button-trudvang:active
+{
+    background-color: #ae4939;
+    border: 0.125rem solid #ae4939;
+}
+
+.names
+{
+    min-height: 20rem;
+}
+
+.names h3
+{
     text-align: center;
-    font-family: bignoodletitlingregular;
-    text-transform: uppercase;
-    font-weight: normal;
-    margin-top: 0;
 }
 
-.rbt-btn:hover
+.names p
 {
-    background-color: #fefefe;
-    color: #24282d;
-}
-
-.sheet
-{
-    margin-top: 1rem;
-}
-
-.skill
-{
-    font-family: "FuturaStd-Book";
-    letter-spacing: 0.05rem;
-    font-weight: bold;
-    -webkit-font-variant: all-small-caps;
-    -moz-font-variant: all-small-caps;
-    -ms-font-variant: all-small-caps;
-    -o-font-variant: all-small-caps;
-    font-variant: all-small-caps;
-}
-
-.table.skill
-{
+    font-family: "Cabin";
     font-size: 1rem;
-    font-weight: normal;
-}
-
-.reference, .ref
-{
-    font-style: italic;
-
-}
-
-.symbol
-{
-    font-family: "workingsignstfb-Regular";
-    font-size: 1.2rem;
-}
-
-.modules ul
-{
-    list-style: none;
-}
-
-.modules ul li:before
-{
-    content: '\00a4';
-    font-weight: bold;
-    left: 0;
-    margin: 0 -2rem; /* any design */
-    position: absolute;
-}
-
-.modules ul li
-{
-    overflow: visible;
-    padding-left: 0;
-    position: relative;
+    text-align: center;
 }

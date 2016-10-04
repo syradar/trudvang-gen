@@ -16,8 +16,8 @@
     <script src="App/app.js"></script>
     <script src="App/data-namegen.js"></script>
 </head>
-<body class="container-fluid" ng-app="trudvangHelper">
-    <div ng-controller="appController">
+<body class="container-fluid container-app" ng-app="trudvangHelper">
+    <div class="masthead" ng-controller="appController">
         <nav class="navbar navbar-inverse">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -28,7 +28,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">MUTANT</a>
+                    <a class="navbar-brand" href="index.html">TRUDVANG</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -42,127 +42,44 @@
             </div><!-- /.container-fluid -->
         </nav>
     </div>
-    <div ng-controller="nameController" class="container">
+    <div ng-controller="nameController" class="container container-content">
         <div class="row">
             <div class="col-xs-12">
                 <h1>Names</h1>
-                <p>Enkel och rolig förklarande text som beskriver vad man kan göra på sidan.</p>
+                <p>Generate names for PCs and NPCs. The names are generated from prefix and suffix released by RiotMinds. Later on names could be generated with Markov Chains to produce even more random names. The lastname are divided in four parts: family/lineage, epithets,profession and nicknames. The lastnames however are very few at the moment and I will need help getting more.</p>
             </div>
+        </div>
+        <div class="row">
             <div class="col-xs-12 col-md-12">
-                <h2 class="rbt-btn" ng-click="RollArtifacts('maskinarium')">Slumpa artefakt</h2>
-            </div>
-            <div class="col-xs-12 col-md-12">
-                <!--<h2 class="rbt-btn" ng-click="GetRandomRobot()">Slumpa Robot</h2>-->
-            </div>
-            <div class="col-xs-12 col-md-12">
-                VÄLJA SKROT ELLER ARTEFAKT SAMT BESTÄMMA PROCENT ARTEFAKTER MOT SKROT
-            </div>
-            <div class="col-xs-12 col-md-6">
-                <h2>Källor</h2>
-                <div class="form-inline">
-                    <div class="form-group">
-                        <div class="checkbox" ng-repeat="source in Things.Sources">
-                            <label for="{{source}}" class="checkbox-inline">
-                                <input type="checkbox"
-                                       id="{{source}}"
-                                       name="ThingsSources[]"
-                                       value="{{source}}"
-                                       ng-checked="Things.SelectedSources.indexOf(source) > -1"
-                                       ng-click="toggleSelection(source)"> {{source}}
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6">
-                <h2>Typer</h2>
-                <div class="form-inline">
-                    <div class="form-group">
-                        <div class="checkbox" ng-repeat="type in Things.Types">
-                            <label for="{{type}}" class="checkbox-inline">
-                                <input type="checkbox"
-                                       id="{{type}}"
-                                       name="ThingsTypes[]"
-                                       value="{{type}}"
-                                       ng-checked="Things.SelectedTypes.indexOf(type) > -1"
-                                       ng-click="toggleTypeSelection(type)"> {{type}}
-                            </label>
-                        </div>
-                    </div>
+                <h2>People names</h2>
+                <div class="button-trudvang-group">
+                    <p class="button-trudvang" ng-click="GenerateName('Stormlander')">Stormlander</p>
+                    <p class="button-trudvang" ng-click="GenerateName('Mittlander')">Mittlander</p>
+                    <p class="button-trudvang" ng-click="GenerateName('Virann')">Virann</p>
+                    <p class="button-trudvang" ng-click="GenerateName('Elf')">Elf</p>
+                    <p class="button-trudvang" ng-click="GenerateName('Dwarf')">Dwarf</p>
+                    <p class="button-trudvang" ng-click="GenerateName('Troll')">Troll</p>
                 </div>
             </div>
         </div>
-        <div class="row sheet">
-            <div class="col-xs-12">
-                <div class="modules row" ng-repeat="art in Things.RandomList">
-                    <div class="col-xs-8">
-                        <h3>¤ {{art.name}} ({{art.source}})</h3>
-                        <p>
-                            <strong>{{art.type}}</strong>
-                        </p>
-                        <p ng-if="art.description"><span ng-bind-html="art.description | trust"></span></p>
-                        <p ng-if="art.effect">
-                            <strong>Effekt</strong>: <span ng-bind-html="art.effect | trust"></span>
-                        </p>
-                        <p ng-if="art.unKrav">
-                            <strong>UN-krav</strong>: {{art.unKrav}}
-                        </p>
-                        <p ng-if="art.unBonus">
-                            <strong>UN-bonus</strong>: {{art.unBonus}}
-                        </p>
-                        <p ng-if="art.special">
-                            <strong>Special</strong>: {{art.special}}
-                        </p>
-                    </div>
-                    <div ng-if="art.image" class="col-xs-4">
-                        <img src="{{art.image}}" alt="Artefaktens bild" />
-                    </div>
-                </div>
+        <div class="row names clearfix">
+            <div class="col-xs-12 col-md-6" ng-if="Names.male">
+                <h3>{{SelectedPeopleName}} male names</h3>
+                <p ng-repeat="name in Names.male track by $index">{{name}}</p>
+            </div>
+            <div class="col-xs-12 col-md-6" ng-if="Names.female">
+                <h3>{{SelectedPeopleName}} female names</h3>
+                <p ng-repeat="name in Names.female track by $index">{{name}}</p>
+            </div>
+            <div class="col-xs-12 col-md-6" ng-if="Names.troll">
+                <h3>{{SelectedPeopleName}} names</h3>
+                <p ng-repeat="name in Names.troll track by $index">{{name}}</p>
             </div>
         </div>
-        <!--
-
-            KOD FÖR ATT SKAPA KORT FÖR PRINT!!!
-
-        
-            <div class="row sheet">
-            <div class="col-xs-12">
-                <div class="magic" ng-repeat="art in Things.RandomList">
-
-                    <h3>{{art.name}} ({{art.source}})</h3>
-                    <img src="{{art.image}}" alt="Artefaktens bild"/>
-                    <p>
-                        <strong>{{art.type}}</strong>
-                    </p>
-                    <div class="magic-desc">
-                        <p ng-if="art.description">{{art.description}}</p>
-                        <p ng-if="art.effect">
-                            <strong>Effekt</strong>: <span ng-bind-html="art.effect | trust"></span>
-                        </p>
-                        <p ng-if="art.unKrav">
-                            <strong>UN-krav</strong>: {{art.unKrav}}
-                        </p>
-                        <p ng-if="art.unBonus">
-                            <strong>UN-bonus</strong>: {{art.unBonus}}
-                        </p>
-                        <p ng-if="art.special">
-                            <strong>Special</strong>: {{art.special}}
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>-->
-        <div class="row sheet">
-            <div class="col-xs-12">
-                <h4>Slå 1T6 för att avgöra dess skick:</h4>
-                <ol>
-                    <li>Vid första anblick kan den verka ok, men i själva verket är den troligen rent av farlig.</li>
-                    <li>Uruselt skick. Håller knappt ihop, sönderrostad, tom burk eller liknande.</li>
-                    <li>Dålig skick. Går nog att använda men risken är nog överhängande att den går sönder, smakar konstigt eller tar helt slut.</li>
-                    <li>Ok skick. Välanvänd men funktionsduglig ännu. Har objektet någon typ av innehåll, så finns nog ca hälften kvar.</li>
-                    <li>Bra skick. Prima vara, och även om eventuella bäst-före datum gått ut, så är den nog helt ok att använda, dricka eller så. Stor del av innehållet finns kvar.</li>
-                    <li>Perfekt nyskick, kanske t o m helt oöppnad och fortfarande inplastad. Ovanligt välbevarad under omständigheterna.</li>
-                </ol>
+        <div class="row">
+            <div class="col-xs-12 col-md-12"></div>
+            <div class="col-xs-12 col-md-12">
+                <h2 class="trudvang-teaser">Tavern & Plant names (WIP)</h2>
             </div>
         </div>
     </div>

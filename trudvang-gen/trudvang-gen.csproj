@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\data-namegen.js" />
+    <Content Include="Content\Images\bg_urkult_sunset.jpg" />
     <Content Include="packages.config" />
     <Content Include="Content\Fonts\fontawesome-webfont.eot" />
     <Content Include="Content\Fonts\fontawesome-webfont.ttf" />

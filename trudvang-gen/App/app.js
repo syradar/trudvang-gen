@@ -1,6 +1,7 @@
 ﻿"use strict";
 
 // Robot Class
+/*
 function Robot() {
     var robot = {};
     var helper = new Helper();
@@ -289,15 +290,95 @@ function Thing() {
     }
 
     return this;
-}
+}*/
+
 function Name() {
     var name = {};
     var helper = new Helper();
     var self = this;
+    var dss;
+    var data = {};
+    this.SetData = function(dataStoreService) {
+        dss = dataStoreService;
+        data = dss.getNameData();
+        console.log(data);
+    };
+    this.GetRandomNames = function(people, numberOfNames) {
+        people = people.toLowerCase();
+        //var prefixLength = data.people[people]["prefix"].length;
+        //var suffixLength = {};
+        var names = {};
+        var name = "";
+        var lastName = "";
+        if (people === "troll") {
+            //suffixLength = data.people.troll.suffix.length;
+            names.troll = [];
+            for (var i = 0; i < numberOfNames; i++) {
+                name = helper.GetRandomFromList(data.people.troll.prefix) +
+                    helper.GetRandomFromList(data.people.troll.suffix);
+
+                name = helper.Capitalize(name);
+                names.troll.push(name);
+            }
+        }
+
+        if (data.people[people].suffix.hasOwnProperty("male")) {
+            //suffixLength.male = data.people[people].suffix.male.length;
+            names.male = [];
+            for (var j = 0; j < numberOfNames; j++) {
+                name = helper.GetRandomFromList(data.people[people].prefix) +
+                    helper.GetRandomFromList(data.people[people].suffix.male);
+                if (data.people[people].hasOwnProperty("lastnames")) {
+                    if (helper.GetRandomInt(0, 6) + 1 >= 0) { //5
+                        var numberOfLastnames = Object.keys(data.people[people].lastnames).length;
+                        var lastnameType = Object.keys(data.people[people].lastnames)[helper
+                            .GetRandomInt(0, numberOfLastnames)];
+                        lastName = helper.GetRandomFromList(data.people[people].lastnames[lastnameType]);
+                        name = helper.Capitalize(name) + " " + helper.Capitalize(lastName);
+                    } else {
+                        name = helper.Capitalize(name);
+                    }
+                }
+
+                names.male.push(name);
+            }
+
+        }
+        if (data.people[people].suffix.hasOwnProperty("female")) {
+            //suffixLength.female = data.people[people].suffix.female.length;
+            names.female = [];
+            for (var k = 0; k < numberOfNames; k++) {
+                name = helper.GetRandomFromList(data.people[people].prefix) +
+                    helper.GetRandomFromList(data.people[people].suffix.female);
+
+                if (data.people[people].hasOwnProperty("lastnames")) {
+                    if (helper.GetRandomInt(0, 6) + 1 >= 0) { //5
+                        var numberOfLastnames = Object.keys(data.people[people].lastnames).length;
+                        var lastnameType = Object.keys(data.people[people].lastnames)[helper
+                            .GetRandomInt(0, numberOfLastnames)];
+                        lastName = helper.GetRandomFromList(data.people[people].lastnames[lastnameType]);
+                        name = helper.Capitalize(name) + " " + helper.Capitalize(lastName);
+                    } else {
+                        name = helper.Capitalize(name);
+                    }
+                }
+                names.female.push(name);
+            }
+        }
+
+        return names;
+
+
+    };
+
+    function getRandomName(people) {
+
+    }
 
     return this;
 }
-function Danger() {
+
+/*function Danger() {
     var danger = {};
     var helper = new Helper();
     var data = {};
@@ -334,7 +415,7 @@ function Danger() {
         danger.Block = stats.block.slice();
 
         if (dataDanger.hasOwnProperty("functions")) {
-            dataDanger.functions.forEach(function (func) {
+            dataDanger.functions.forEach(function(func) {
                 var funcString = "_" + func.function;
                 if (angular.isFunction(self[funcString])) {
                     self[funcString]();
@@ -396,7 +477,7 @@ function Danger() {
         return danger;
     };
     this.GetZoneDangerName = function(type) {
-        
+
     };
 
     function getStats(chosenDanger) {
@@ -411,18 +492,18 @@ function Danger() {
             chosenDanger.statBlock.forEach(function(stat) {
                 if (stat.hasOwnProperty("type")) {
                     switch (stat.type) {
-                        case "inline":
-                            stat.description = helper.GetHtmlOutput(stat.description);
+                    case "inline":
+                        stat.description = helper.GetHtmlOutput(stat.description);
                         stats.inline.push(stat);
                         break;
 
-                        case "blockValue":
-                            stat.description = helper.GetHtmlOutput(stat.description);
+                    case "blockValue":
+                        stat.description = helper.GetHtmlOutput(stat.description);
                         stats.blockValue.push(stat);
                         break;
 
-                        case "block":
-                            stat.description = helper.GetHtmlOutput(stat.description);
+                    case "block":
+                        stat.description = helper.GetHtmlOutput(stat.description);
                         stats.block.push(stat);
                         break;
                     default:
@@ -626,45 +707,15 @@ function Danger() {
     };
 
     return this;
-}
+}*/
 
 function DataStore() {
     var data = {};
     if (typeof window.nameData !== "undefined" || window.nameData !== null) {
         data.Names = window.nameData;
     }
-    if (typeof window.zonenData !== "undefined" || window.zonenData !== null) {
-        data.Zonen = window.zonenData;
-    }
-    if (typeof window.genlabData !== "undefined" || window.genlabData !== null) {
-        data.Genlab = window.genlabData;
-    }
-    if (typeof window.robotData !== "undefined" || window.robotData !== null) {
-        data.Robot = window.robotData;
-    }
-    if (typeof window.farorData !== "undefined" || window.farorData !== null) {
-        data.Faror = window.farorData;
-    }
-    if (typeof window.itemsData !== "undefined" || window.itemsData !== null) {
-        data.Items = window.itemsData;
-    }
-    this.getRobot = function() {
-        return angular.copy(data.Robot);
-    };
-    this.getZonenData = function() {
-        return angular.copy(data.Zonen);
-    };
-    this.getGeneral = function() {
-        return angular.copy(data.General);
-    };
-    this.getGenlab = function() {
-        return angular.copy(data.Genlab);
-    };
-    this.getFarorData = function() {
-        return angular.copy(data.Faror);
-    };
-    this.getItemsData = function() {
-        return angular.copy(data.Items);
+    this.getNameData = function() {
+        return angular.copy(data.Names);
     };
 
     return this;
@@ -679,130 +730,27 @@ app.controller("appController",
             {
                 name: "Name Generator",
                 path: "namegen.html"
-            }, {
-                name: "?",
-                path: "robot.html"
-            }, {
-                name: "?",
-                path: "faror.html"
-            }, {
-                name: "?",
-                path: "prylar.html"
-            }, {
-                name: "?",
-                path: "genlab_moten.html"
             }
         ];
-        $scope.Version = "Pracownik fabryki wersja systemu głównego 0.0.6a";
+       
     }
 ]);
-app.controller("genlabController",
+app.controller("nameController",
 [
-    "$scope", "DataStoreService", function($scope, DataStoreService) {
+    "$scope", "DataStoreService", "NameService", function($scope, DataStoreService, NameService) {
         var helper = new Helper();
-        var data = {};
-        data.Genlab = DataStoreService.getGenlab();
-        data.General = DataStoreService.getGeneral();
-        $scope.Meeting = { Terrain: {} };
-        $scope.Meeting.ThreatLevel = 0;
+        var nameService = NameService;
+        nameService.SetData(DataStoreService);
 
-        $scope.RollRandomThreat = function() {
-            $scope.Meeting.Terrain = helper.GetRandomFromList(data.Genlab.terrain);
-            $scope.RollThreat();
-        };
-        $scope.RollThreat = function() {
-            // Reset Meeting desc
-            $scope.Meeting.Description = "";
-            $scope.Meeting.Number = 0;
-            // Generate Threat
-            $scope.Meeting.ThreatLevel = helper.RollMutantDieSuccessesOnly($scope.Meeting.Terrain.threat);
-            $scope.Meeting.Place = $scope.Meeting.Terrain.name;
+        $scope.Names = {};
+        $scope.SelectedPeopleName = "";
 
-            if ($scope.Meeting.ThreatLevel > 0) {
-                var randomMeeting = getRandomMeeting();
-                $scope.Meeting.Description = randomMeeting.description;
-                $scope.Meeting.Expression = randomMeeting.expression;
-                $scope.Meeting.Number = randomMeeting.number;
-
-
-                if ($scope.Meeting.Description.indexOf("{expression}") !== -1) {
-                    if (Array.isArray($scope.Meeting.Expression)) {
-                        $scope.Meeting.Expression.forEach(function(expr) {
-                            $scope.Meeting.Description = $scope.Meeting.Description
-                                .replace("{expression}",
-                                    stringToInt(expr,
-                                        $scope.Meeting
-                                        .ThreatLevel));
-                        });
-                    } else {
-                        $scope.Meeting.Description = $scope.Meeting.Description
-                            .replace("{expression}",
-                                stringToInt($scope.Meeting.Expression,
-                                    $scope.Meeting
-                                    .ThreatLevel));
-                    }
-                }
-                if ($scope.Meeting.Description.indexOf("{artifact}") !== -1) {
-                    var artifact = Helper.GetRandomFromList(data.General.artifacts);
-
-                    $scope.Meeting.Description = $scope.Meeting.Description
-                        .replace("{artifact}",
-                            artifact.name);
-                }
-
-
-                if ($scope.Meeting.Description.indexOf("{expression}") !== -1) {
-                    $scope.Meeting.Description = $scope.Meeting.Description
-                        .replace("{expression}", stringToInt($scope.Meeting.Expression, $scope.Meeting.ThreatLevel));
-                }
-
-            }
+        $scope.GenerateName = function(people) {
+            console.log("Börjar att skapa " + people + " namn");
+            $scope.SelectedPeopleName = helper.Capitalize(people);
+            $scope.Names = nameService.GetRandomNames(people, 10);
         };
 
-        function stringToInt(input, threat) {
-            var array;
-            var sum = 0;
-            if (input.indexOf("T6") !== -1) {
-                input = input.replace("T6", helper.RullaT6());
-            }
-
-            if (input.indexOf("hot") !== -1) {
-                input = input.replace("hot", threat);
-            }
-
-            if (input.indexOf("+") !== -1) {
-                array = input.split("+");
-                array.forEach(function(value) {
-                    if (parseInt(value) !== NaN) {
-                        sum += parseInt(value);
-                    }
-                });
-
-            } else if (input.indexOf("-") !== -1) {
-                array = input.split("-");
-                sum = array[0];
-                for (let i = 1; i < array.length; i++) {
-                    sum -= array[i];
-                }
-            } else {
-                sum += parseInt(input);
-            }
-            return sum;
-        }
-
-        function getRandomMeeting() {
-            var meetings = $scope.Meeting.Terrain.meetings;
-            var randomMeetingNumber = helper.GetRandomFromList(meetings);
-            var randomMeeting = {};
-
-            data.Genlab.meetings.forEach(function(meeting) {
-                if (meeting.number === randomMeetingNumber) {
-                    randomMeeting = meeting;
-                }
-            });
-
-            return randomMeeting;
-        }
     }
 ]);
 app.controller("zonenController",
@@ -879,11 +827,16 @@ app.controller("zonenController",
             for (var k = 0; k < $scope.Zonen.Threat.Amount; k++) {
                 random = helper.RullaT6();
                 if (random === 1 || random === 2) {
-                    $scope.Zonen.Threat.Names.push(helper.GetRandomFromListWeigthed(data.dangers.humanoider, "chance").name);
+                    $scope.Zonen.Threat.Names.push(helper.GetRandomFromListWeigthed(data.dangers.humanoider, "chance")
+                        .name);
                 } else if (random === 6) {
-                    $scope.Zonen.Threat.Names.push(helper.GetRandomFromListWeigthed(data.dangers.fenomen, "chance").name);
+                    $scope.Zonen.Threat.Names.push(helper
+                        .GetRandomFromListWeigthed(data.dangers.fenomen, "chance")
+                        .name);
                 } else {
-                    $scope.Zonen.Threat.Names.push(helper.GetRandomFromListWeigthed(data.dangers.monster,"chance").name);
+                    $scope.Zonen.Threat.Names.push(helper
+                        .GetRandomFromListWeigthed(data.dangers.monster, "chance")
+                        .name);
                 }
             }
 
@@ -925,7 +878,7 @@ app.controller("prylarController",
         var thingService = ThingService;
         thingService.SetData(DataStoreService);
         var helper = new Helper();
-        
+
         $scope.Things = {};
         $scope.Things.Sources = thingService.GetSources();
         $scope.Things.SelectedSources = $scope.Things.Sources.slice();
@@ -1197,13 +1150,10 @@ app.controller("robotController",
     }
 ]);
 
-app.factory("RobotService", Robot);
+//app.factory("RobotService", Robot);
 app.factory("DataStoreService", DataStore);
-app.factory("ThingService", Thing);
-app.factory("DangerService",
-    function() {
-        return new Danger();
-    });
+app.factory("NameService", Name);
+//app.factory("DangerService",function() {return new Danger();});
 
 app.filter("trust",
 [
