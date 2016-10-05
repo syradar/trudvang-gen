@@ -75,8 +75,6 @@ function Robot() {
     }
 
     function generateProgramValues() {
-        //TODO:Viktad tilläggning av programvärden
-
         robot.ProgramPoints = 10;
 
         robot.Programs.forEach(function(program) {
@@ -293,9 +291,8 @@ function Thing() {
 }*/
 
 function Name() {
-    var name = {};
     var helper = new Helper();
-    var self = this;
+    //var self = this;
     var dss;
     var data = {};
     this.SetData = function(dataStoreService) {
@@ -308,8 +305,8 @@ function Name() {
         //var prefixLength = data.people[people]["prefix"].length;
         //var suffixLength = {};
         var names = {};
-        var name = "";
-        var lastName = "";
+        var name;
+        //var lastName = "";
         if (people === "troll") {
             //suffixLength = data.people.troll.suffix.length;
             names.troll = [];
@@ -328,18 +325,8 @@ function Name() {
             for (var j = 0; j < numberOfNames; j++) {
                 name = helper.GetRandomFromList(data.people[people].prefix) +
                     helper.GetRandomFromList(data.people[people].suffix.male);
-                if (data.people[people].hasOwnProperty("lastnames")) {
-                    if (helper.GetRandomInt(0, 6) + 1 >= 0) { //5
-                        var numberOfLastnames = Object.keys(data.people[people].lastnames).length;
-                        var lastnameType = Object.keys(data.people[people].lastnames)[helper
-                            .GetRandomInt(0, numberOfLastnames)];
-                        lastName = helper.GetRandomFromList(data.people[people].lastnames[lastnameType]);
-                        name = helper.Capitalize(name) + " " + helper.Capitalize(lastName);
-                    } else {
-                        name = helper.Capitalize(name);
-                    }
-                }
-
+                
+                name = helper.Capitalize(name);
                 names.male.push(name);
             }
 
@@ -351,17 +338,7 @@ function Name() {
                 name = helper.GetRandomFromList(data.people[people].prefix) +
                     helper.GetRandomFromList(data.people[people].suffix.female);
 
-                if (data.people[people].hasOwnProperty("lastnames")) {
-                    if (helper.GetRandomInt(0, 6) + 1 >= 0) { //5
-                        var numberOfLastnames = Object.keys(data.people[people].lastnames).length;
-                        var lastnameType = Object.keys(data.people[people].lastnames)[helper
-                            .GetRandomInt(0, numberOfLastnames)];
-                        lastName = helper.GetRandomFromList(data.people[people].lastnames[lastnameType]);
-                        name = helper.Capitalize(name) + " " + helper.Capitalize(lastName);
-                    } else {
-                        name = helper.Capitalize(name);
-                    }
-                }
+                name = helper.Capitalize(name);
                 names.female.push(name);
             }
         }
@@ -370,10 +347,20 @@ function Name() {
 
 
     };
-
-    function getRandomName(people) {
-
-    }
+    /*
+    function LastNames(people) {
+        if (data.people[people].hasOwnProperty("lastnames")) {
+            if (helper.GetRandomInt(0, 6) + 1 >= 0) { //5
+                var numberOfLastnames = Object.keys(data.people[people].lastnames).length;
+                var lastnameType = Object.keys(data.people[people].lastnames)[helper
+                    .GetRandomInt(0, numberOfLastnames)];
+                lastName = helper.GetRandomFromList(data.people[people].lastnames[lastnameType]);
+                name = helper.Capitalize(name) + " " + helper.Capitalize(lastName);
+            } else {
+                name = helper.Capitalize(name);
+            }
+        }
+    }*/
 
     return this;
 }
@@ -764,8 +751,7 @@ app.controller("zonenController",
         var dangerService = DangerService;
         dangerService.SetData(DataStoreService);
 
-        var data = {};
-        data = DataStoreService.getZonenData();
+        var data = DataStoreService.getZonenData();
 
         $scope.Zonen = {};
         $scope.Zonen.Threat = {};
@@ -861,15 +847,7 @@ app.controller("zonenController",
             $scope.Zonen.Artifacts.Things = artifacts;
         };
 
-        function getDangerName(type) {
-            if (type === "humanoider") {
-                return helper.GetRandomFromListWeigthed(data.dangers.humanoider);
-            } else if (type === "monster") {
-                return helper.GetRandomFromListWeigthed(data.dangers.monster);
-            } else if (type === "fenomen") {
-                return helper.GetRandomFromListWeigthed(data.dangers.fenomen);
-            }
-        }
+        
     }
 ]);
 app.controller("prylarController",
@@ -877,8 +855,7 @@ app.controller("prylarController",
     "$scope", "DataStoreService", "ThingService", function($scope, DataStoreService, ThingService) {
         var thingService = ThingService;
         thingService.SetData(DataStoreService);
-        var helper = new Helper();
-
+        
         $scope.Things = {};
         $scope.Things.Sources = thingService.GetSources();
         $scope.Things.SelectedSources = $scope.Things.Sources.slice();
@@ -889,11 +866,10 @@ app.controller("prylarController",
         $scope.Things.Filtered = [];
         $scope.Things.RandomList = [];
 
-        $scope.RollArtifacts = function(book) {
+        $scope.RollArtifacts = function() {
 
             $scope.Things.RandomList = [];
-            $scope.Things.RandomList.push(thingService
-                .GetRandomThing($scope.Things.SelectedSources, $scope.Things.SelectedTypes));
+            $scope.Things.RandomList.push(thingService.GetRandomThing($scope.Things.SelectedSources, $scope.Things.SelectedTypes));
         };
 
         $scope.toggleSelection = function(source) {
@@ -994,7 +970,6 @@ app.controller("farorController",
     "$scope", "RobotService", "DataStoreService", "DangerService",
     function($scope, RobotService, DataStoreService, DangerService) {
         var robotService = RobotService;
-        var helper = new Helper();
         var dangerService = DangerService;
         dangerService.SetData(DataStoreService);
 
