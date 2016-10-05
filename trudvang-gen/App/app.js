@@ -347,6 +347,18 @@ function Name() {
 
 
     };
+
+    this.GetRandomPlaceNames = function(type, numberOfNames) {
+        type = type.toLowerCase();
+        var names = [];
+        var name;
+        for (var i = 0; i < numberOfNames; i++) {
+            name = helper.GetRandomFromList(data[type].prefix) + helper.GetRandomFromList(data[type].suffix);
+            name = helper.Capitalize(name);
+            names.push(name);
+        }
+        return names;
+    }
     /*
     function LastNames(people) {
         if (data.people[people].hasOwnProperty("lastnames")) {
@@ -731,13 +743,19 @@ app.controller("nameController",
 
         $scope.Names = {};
         $scope.SelectedPeopleName = "";
+        $scope.PlaceNames;
+        $scope.SelectedPlaceName = "";
 
         $scope.GenerateName = function(people) {
             console.log("Börjar att skapa " + people + " namn");
             $scope.SelectedPeopleName = helper.Capitalize(people);
             $scope.Names = nameService.GetRandomNames(people, 10);
         };
-
+        $scope.GeneratePlaceName = function (place) {
+            console.log("Börjar att skapa " + place + " namn");
+            $scope.SelectedPlaceName = helper.Capitalize(place);
+            $scope.PlaceNames = nameService.GetRandomPlaceNames(place, 10);
+        };
     }
 ]);
 app.controller("zonenController",

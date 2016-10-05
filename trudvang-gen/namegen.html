@@ -46,12 +46,12 @@
         <div class="row">
             <div class="col-xs-12">
                 <h1>Names</h1>
-                <p>Generate names for PCs and NPCs. The names are generated from prefix and suffix released by RiotMinds. Later on names could be generated with Markov Chains to produce even more random names. The lastname are divided in four parts: family/lineage, epithets,profession and nicknames. The lastnames however are very few at the moment and I will need help getting more.</p>
+                <p>Generate names for PCs and NPCs. The names are generated from prefix and suffix released by RiotMinds. Later on names could be generated with Markov Chains to produce even more random names.</p>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12 col-md-12">
-                <h2>People names</h2>
+                <h2>People</h2>
                 <div class="button-trudvang-group">
                     <p class="button-trudvang" ng-click="GenerateName('Stormlander')">Stormlander</p>
                     <p class="button-trudvang" ng-click="GenerateName('Mittlander')">Mittlander</p>
@@ -79,7 +79,23 @@
         <div class="row">
             <div class="col-xs-12 col-md-12"></div>
             <div class="col-xs-12 col-md-12">
-                <h2 class="trudvang-teaser">Tavern & Plant names (WIP)</h2>
+                <h2 class="">Places and Things</h2>
+                <div class="button-trudvang-group">
+                    <p class="button-trudvang" ng-click="GeneratePlaceName('Town')">Town</p>
+                    <p class="button-trudvang" ng-click="GeneratePlaceName('Tavern')">Tavern</p>
+                    <p class="button-trudvang" ng-click="GeneratePlaceName('Plant')">Plant</p>
+                </div>
+            </div>
+        </div>
+        <div class="row names clearfix">
+            <div class="col-xs-12 col-md-6" ng-if="PlaceNames">
+                <h3>{{SelectedPlaceName}} names</h3>
+                <p ng-repeat="name in PlaceNames track by $index">{{name}}</p>
+            </div>
+        </div>
+        <div class="row names clearfix">
+            <div class="col-xs-12 filler">
+                
             </div>
         </div>
     </div>

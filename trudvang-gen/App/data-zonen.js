@@ -480,3 +480,47 @@
         }
     ]
 };
+
+people = people.toLowerCase();
+//var prefixLength = data.people[people]["prefix"].length;
+//var suffixLength = {};
+var names = {};
+var name;
+//var lastName = "";
+if (people === "troll") {
+    //suffixLength = data.people.troll.suffix.length;
+    names.troll = [];
+    for (var i = 0; i < numberOfNames; i++) {
+        name = helper.GetRandomFromList(data.people.troll.prefix) +
+            helper.GetRandomFromList(data.people.troll.suffix);
+
+        name = helper.Capitalize(name);
+        names.troll.push(name);
+    }
+}
+
+if (data.people[people].suffix.hasOwnProperty("male")) {
+    //suffixLength.male = data.people[people].suffix.male.length;
+    names.male = [];
+    for (var j = 0; j < numberOfNames; j++) {
+        name = helper.GetRandomFromList(data.people[people].prefix) +
+            helper.GetRandomFromList(data.people[people].suffix.male);
+                
+        name = helper.Capitalize(name);
+        names.male.push(name);
+    }
+
+}
+if (data.people[people].suffix.hasOwnProperty("female")) {
+    //suffixLength.female = data.people[people].suffix.female.length;
+    names.female = [];
+    for (var k = 0; k < numberOfNames; k++) {
+        name = helper.GetRandomFromList(data.people[people].prefix) +
+            helper.GetRandomFromList(data.people[people].suffix.female);
+
+        name = helper.Capitalize(name);
+        names.female.push(name);
+    }
+}
+
+return names;

@@ -294,10 +294,6 @@ h4
     border: 0.125rem solid #ae4939;
 }
 
-.names
-{
-    }
-
 .names h3
 {
     text-align: center;
@@ -308,4 +304,9 @@ h4
     font-family: "Cabin";
     font-size: 1rem;
     text-align: center;
+}
+
+.filler
+{
+    height: 4rem;
 }
