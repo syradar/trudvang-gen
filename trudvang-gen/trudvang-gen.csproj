@@ -66,7 +66,14 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\data-i18n.js" />
     <Content Include="App\data-namegen.js" />
+    <Content Include="Content\Fonts\Asul-700\Asul-700.svg" />
+    <Content Include="Content\Fonts\Asul-regular\Asul-regular.svg" />
+    <Content Include="Content\Fonts\Cabin-700italic\Cabin-700italic.svg" />
+    <Content Include="Content\Fonts\Cabin-700\Cabin-700.svg" />
+    <Content Include="Content\Fonts\Cabin-italic\Cabin-italic.svg" />
+    <Content Include="Content\Fonts\Cabin-regular\Cabin-regular.svg" />
     <Content Include="Content\Images\bg_urkult_sunset.jpg" />
     <Content Include="packages.config" />
     <Content Include="Content\Fonts\fontawesome-webfont.eot" />
@@ -86,10 +93,36 @@
     <Content Include="Scripts\angular-route.min.js.map" />
     <Content Include="Scripts\angular-sanitize.min.js.map" />
     <Content Include="Scripts\angular-touch.min.js.map" />
+    <Content Include="Scripts\angular-translate.js" />
+    <Content Include="Scripts\angular-translate.min.js" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Content\Fonts\Cabin-italic\Cabin-italic.eot" />
+    <Content Include="Content\Fonts\Cabin-italic\Cabin-italic.ttf" />
+    <Content Include="Content\Fonts\Cabin-italic\Cabin-italic.woff" />
+    <Content Include="Content\Fonts\Cabin-italic\Cabin-italic.woff2" />
+    <Content Include="Content\Fonts\Cabin-700\Cabin-700.eot" />
+    <Content Include="Content\Fonts\Cabin-700\Cabin-700.ttf" />
+    <Content Include="Content\Fonts\Cabin-700\Cabin-700.woff" />
+    <Content Include="Content\Fonts\Cabin-700\Cabin-700.woff2" />
+    <Content Include="Content\Fonts\Cabin-700italic\Cabin-700italic.eot" />
+    <Content Include="Content\Fonts\Cabin-700italic\Cabin-700italic.ttf" />
+    <Content Include="Content\Fonts\Cabin-700italic\Cabin-700italic.woff" />
+    <Content Include="Content\Fonts\Cabin-700italic\Cabin-700italic.woff2" />
+    <Content Include="Content\Fonts\Cabin-regular\Cabin-regular.eot" />
+    <Content Include="Content\Fonts\Cabin-regular\Cabin-regular.ttf" />
+    <Content Include="Content\Fonts\Cabin-regular\Cabin-regular.woff" />
+    <Content Include="Content\Fonts\Cabin-regular\Cabin-regular.woff2" />
+    <Content Include="Content\Fonts\Asul-700\Asul-700.eot" />
+    <Content Include="Content\Fonts\Asul-700\Asul-700.ttf" />
+    <Content Include="Content\Fonts\Asul-700\Asul-700.woff" />
+    <Content Include="Content\Fonts\Asul-700\Asul-700.woff2" />
+    <Content Include="Content\Fonts\Asul-regular\Asul-regular.eot" />
+    <Content Include="Content\Fonts\Asul-regular\Asul-regular.ttf" />
+    <Content Include="Content\Fonts\Asul-regular\Asul-regular.woff" />
+    <Content Include="Content\Fonts\Asul-regular\Asul-regular.woff2" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

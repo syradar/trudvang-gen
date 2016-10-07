@@ -290,92 +290,6 @@ function Thing() {
     return this;
 }*/
 
-function Name() {
-    var helper = new Helper();
-    //var self = this;
-    var dss;
-    var data = {};
-    this.SetData = function(dataStoreService) {
-        dss = dataStoreService;
-        data = dss.getNameData();
-        console.log(data);
-    };
-    this.GetRandomNames = function(people, numberOfNames) {
-        people = people.toLowerCase();
-        //var prefixLength = data.people[people]["prefix"].length;
-        //var suffixLength = {};
-        var names = {};
-        var name;
-        //var lastName = "";
-        if (people === "troll") {
-            //suffixLength = data.people.troll.suffix.length;
-            names.troll = [];
-            for (var i = 0; i < numberOfNames; i++) {
-                name = helper.GetRandomFromList(data.people.troll.prefix) +
-                    helper.GetRandomFromList(data.people.troll.suffix);
-
-                name = helper.Capitalize(name);
-                names.troll.push(name);
-            }
-        }
-
-        if (data.people[people].suffix.hasOwnProperty("male")) {
-            //suffixLength.male = data.people[people].suffix.male.length;
-            names.male = [];
-            for (var j = 0; j < numberOfNames; j++) {
-                name = helper.GetRandomFromList(data.people[people].prefix) +
-                    helper.GetRandomFromList(data.people[people].suffix.male);
-                
-                name = helper.Capitalize(name);
-                names.male.push(name);
-            }
-
-        }
-        if (data.people[people].suffix.hasOwnProperty("female")) {
-            //suffixLength.female = data.people[people].suffix.female.length;
-            names.female = [];
-            for (var k = 0; k < numberOfNames; k++) {
-                name = helper.GetRandomFromList(data.people[people].prefix) +
-                    helper.GetRandomFromList(data.people[people].suffix.female);
-
-                name = helper.Capitalize(name);
-                names.female.push(name);
-            }
-        }
-
-        return names;
-
-
-    };
-
-    this.GetRandomPlaceNames = function(type, numberOfNames) {
-        type = type.toLowerCase();
-        var names = [];
-        var name;
-        for (var i = 0; i < numberOfNames; i++) {
-            name = helper.GetRandomFromList(data[type].prefix) + helper.GetRandomFromList(data[type].suffix);
-            name = helper.Capitalize(name);
-            names.push(name);
-        }
-        return names;
-    }
-    /*
-    function LastNames(people) {
-        if (data.people[people].hasOwnProperty("lastnames")) {
-            if (helper.GetRandomInt(0, 6) + 1 >= 0) { //5
-                var numberOfLastnames = Object.keys(data.people[people].lastnames).length;
-                var lastnameType = Object.keys(data.people[people].lastnames)[helper
-                    .GetRandomInt(0, numberOfLastnames)];
-                lastName = helper.GetRandomFromList(data.people[people].lastnames[lastnameType]);
-                name = helper.Capitalize(name) + " " + helper.Capitalize(lastName);
-            } else {
-                name = helper.Capitalize(name);
-            }
-        }
-    }*/
-
-    return this;
-}
 
 /*function Danger() {
     var danger = {};
@@ -388,7 +302,6 @@ function Name() {
         dss = dataStoreService;
 
         data = dss.getFarorData();
-        console.log(dss.getFarorData());
 
         data.General = dss.getGeneral();
     };
@@ -710,6 +623,10 @@ function Name() {
 
 function DataStore() {
     var data = {};
+    var currentLanguage = "en";
+
+    var observerCallbacks = [];
+
     if (typeof window.nameData !== "undefined" || window.nameData !== null) {
         data.Names = window.nameData;
     }
@@ -717,21 +634,250 @@ function DataStore() {
         return angular.copy(data.Names);
     };
 
+    //register an observer
+    this.registerObserverCallback = function(callback) {
+        observerCallbacks.push(callback);
+    };
+
+    //call this when you know 'foo' has been changed
+    var notifyObservers = function() {
+        angular.forEach(observerCallbacks,
+            function(callback) {
+                callback();
+            });
+    };
+
+    this.SetCurrentLanguage = function(key) {
+        currentLanguage = key;
+        notifyObservers();
+    };
+
+    this.GetCurrentLanguage = function() {
+        return currentLanguage;
+    };
     return this;
 }
 
-var app = angular.module("trudvangHelper", ["ngSanitize"]);
+function Name() {
+    var helper = new Helper();
+    //var self = this;
+    var dss;
+    var data = {};
+    this.SetData = function(dataStoreService) {
+        dss = dataStoreService;
+        data = dss.getNameData();
+    };
+    this.GetRandomNames = function(language, people, numberOfNames) {
+        people = people.toLowerCase();
+        //var prefixLength = data.people[people]["prefix"].length;
+        //var suffixLength = {};
+        var names = {};
+        var name;
+        //var lastName = "";
+        if (people === "troll") {
+            //suffixLength = data.people.troll.suffix.length;
+            names.troll = [];
+            for (var i = 0; i < numberOfNames; i++) {
+                name = helper.GetRandomFromList(data[language].people.troll.prefix) +
+                    helper.GetRandomFromList(data[language].people.troll.suffix);
+
+                name = helper.Capitalize(name);
+                names.troll.push(name);
+            }
+        }
+
+        if (data[language].people[people].suffix.hasOwnProperty("male")) {
+            //suffixLength.male = data.people[people].suffix.male.length;
+            names.male = [];
+            for (var j = 0; j < numberOfNames; j++) {
+                name = helper.GetRandomFromList(data[language].people[people].prefix) +
+                    helper.GetRandomFromList(data[language].people[people].suffix.male);
+
+                name = helper.Capitalize(name);
+                names.male.push(name);
+            }
+
+        }
+        if (data[language].people[people].suffix.hasOwnProperty("female")) {
+            //suffixLength.female = data.people[people].suffix.female.length;
+            names.female = [];
+            for (var k = 0; k < numberOfNames; k++) {
+                name = helper.GetRandomFromList(data[language].people[people].prefix) +
+                    helper.GetRandomFromList(data[language].people[people].suffix.female);
+
+                name = helper.Capitalize(name);
+                names.female.push(name);
+            }
+        }
+
+        return names;
+    };
+
+    this.GetRandomPlaceNames = function(language, type, numberOfNames) {
+        type = type.toLowerCase();
+        var names = [];
+        var name;
+        for (var i = 0; i < numberOfNames; i++) {
+            name = helper.GetRandomFromList(data[language][type].prefix) +
+                helper.GetRandomFromList(data[language][type].suffix);
+            name = helper.Capitalize(name);
+            names.push(name);
+        }
+        return names;
+    };
+    /*
+    function LastNames(people) {
+        if (data.people[people].hasOwnProperty("lastnames")) {
+            if (helper.GetRandomInt(0, 6) + 1 >= 0) { //5
+                var numberOfLastnames = Object.keys(data.people[people].lastnames).length;
+                var lastnameType = Object.keys(data.people[people].lastnames)[helper
+                    .GetRandomInt(0, numberOfLastnames)];
+                lastName = helper.GetRandomFromList(data.people[people].lastnames[lastnameType]);
+                name = helper.Capitalize(name) + " " + helper.Capitalize(lastName);
+            } else {
+                name = helper.Capitalize(name);
+            }
+        }
+    }*/
+
+    return this;
+}
+
+var app = angular.module("trudvangHelper", ["ngSanitize", "pascalprecht.translate"]);
+
+app.config([
+    "$translateProvider", function($translateProvider, DataStoreService) {
+        var dss = DataStoreService;
+        $translateProvider.translations("en",
+        {
+            "changeLanguage": "Language",
+            "frontpage": {
+                "description": "Tools for Game Masters and Players!"
+            },
+            "namegen": {
+                "title": "Names",
+                "description":
+                    "Generate names for PCs and NPCs. The names are generated from prefix and suffix released by RiotMinds. Later on names could be generated with Markov Chains to produce even more random names.",
+                "people": {
+                    "title": "People",
+                    "maleNameString": " male names",
+                    "femaleNameString": " female names",
+                    "trollNameString": " names",
+                    "stormlander": {
+                        "button": "Stormlander",
+                        "title": "Stormlandish"
+                    },
+                    "mittlander": {
+                        "button": "Mittlander",
+                        "title": "Mittlandish"
+                    },
+                    "virann": {
+                        "button": "Virann",
+                        "title": "Viranni"
+                    },
+                    "elf": {
+                        "button": "Elf",
+                        "title": "Elven"
+                    },
+                    "dwarf": {
+                        "button": "Dwarf",
+                        "title": "Dwarven"
+                    },
+                    "troll": {
+                        "button": "Troll",
+                        "title": "Trollish"
+                    }
+                },
+                "place": {
+                    "title": "Places and things",
+                    "nameString": " names",
+                    "town": "Town",
+                    "tavern": "Tavern",
+                    "plant": "Plant"
+                }
+            }
+        });
+
+        $translateProvider.translations("sv",
+        {
+            "changeLanguage": "Språk",
+            "frontpage": {
+                "description": "Verktyg för Spelledare och spelare!"
+            },
+            "namegen": {
+                "title": "Namn",
+                "description":
+                    "Skapa namn för rollpersoner och spelledarpersoner. Namnen skapas från prefix och suffix släppta av RiotMinds. Planer att skapa namn med hjälp av Markovkedjor för att skapa mer slumpartade namn.",
+                "people": {
+                    "title": "Folkslag",
+                    "maleNameString": " mansnamn",
+                    "femaleNameString": " kvinnonamn",
+                    "trollNameString": " namn",
+                    "stormlander": {
+                        "button": "Stormländare",
+                        "title": "Stormländska"
+                    },
+                    "mittlander": {
+                        "button": "Mittländare",
+                        "title": "Mittländska"
+                    },
+                    "virann": {
+                        "button": "Virann",
+                        "title": "Viranniska"
+                    },
+                    "elf": {
+                        "button": "Alf",
+                        "title": "Alfiska"
+                    },
+                    "dwarf": {
+                        "button": "Dvärg",
+                        "title": "Dvärgiska"
+                    },
+                    "troll": {
+                        "button": "Troll",
+                        "title": "Trolliska"
+                    }
+                },
+                "place": {
+                    "title": "Plats och saker",
+                    "nameString": "namn",
+                    "town": "By",
+                    "tavern": "Värdshus",
+                    "plant": "Växt"
+                }
+            }
+        });
+        $translateProvider.translations("es",
+        {
+            "frontpage": {
+                "description": "Herramientas para maestros de juego y los jugadores!"
+            }
+        });
+        $translateProvider.translations("fr",
+        {
+            "frontpage": {
+                "description": "Outils pour Masters et joueurs de jeux!"
+            }
+        });
+
+        $translateProvider.preferredLanguage("en");
+    }
+]);
 
 app.controller("appController",
 [
-    "$scope", function($scope) {
+    "$scope", "$translate", "DataStoreService", function($scope, $translate, DataStoreService) {
+        var dss = DataStoreService;
         $scope.Links = [
             {
                 name: "Name Generator",
                 path: "namegen.html"
             }
         ];
-       
+        $scope.changeLanguage = function(langKey) {
+            $translate.use(langKey);
+            dss.SetCurrentLanguage(langKey);
+        };
     }
 ]);
 app.controller("nameController",
@@ -741,20 +887,28 @@ app.controller("nameController",
         var nameService = NameService;
         nameService.SetData(DataStoreService);
 
+        var dss = DataStoreService;
+
+        $scope.selectedLanguage = "en";
+
         $scope.Names = {};
         $scope.SelectedPeopleName = "";
-        $scope.PlaceNames;
+        $scope.PlaceNames = {};
         $scope.SelectedPlaceName = "";
 
-        $scope.GenerateName = function(people) {
-            console.log("Börjar att skapa " + people + " namn");
-            $scope.SelectedPeopleName = helper.Capitalize(people);
-            $scope.Names = nameService.GetRandomNames(people, 10);
+        var updateSelectedLanguage = function() {
+            $scope.selectedLanguage = dss.GetCurrentLanguage();
         };
-        $scope.GeneratePlaceName = function (place) {
-            console.log("Börjar att skapa " + place + " namn");
+        dss.registerObserverCallback(updateSelectedLanguage);
+
+        $scope.GenerateName = function(people) {
+            $scope.SelectedPeopleName = helper.Capitalize(people);
+            $scope.Names = nameService.GetRandomNames($scope.selectedLanguage, people, 10);
+        };
+        $scope.GeneratePlaceName = function(place) {
             $scope.SelectedPlaceName = helper.Capitalize(place);
-            $scope.PlaceNames = nameService.GetRandomPlaceNames(place, 10);
+            
+            $scope.PlaceNames[place] = nameService.GetRandomPlaceNames($scope.selectedLanguage, place, 10);
         };
     }
 ]);
@@ -805,8 +959,6 @@ app.controller("zonenController",
 
             var detail = helper.GetRandomFromList(data.details);
 
-            console.log(detail);
-
             $scope.Zonen.Detail = {};
             $scope.Zonen.Detail.Name = detail.name;
             $scope.Zonen.Detail.Description = detail.description;
@@ -846,7 +998,6 @@ app.controller("zonenController",
 
             for (var l = 0; l < $scope.Zonen.Threat.Names.length; l++) {
                 $scope.Zonen.Threat.Dangers.push(dangerService.GetSpecificDanger($scope.Zonen.Threat.Names[l]));
-                console.log($scope.Zonen.Threat.Names[l]);
             }
 
             // ARTIFACTS
@@ -854,7 +1005,6 @@ app.controller("zonenController",
 
             for (var j = 0; j < $scope.Zonen.Artifacts.Amount; j++) {
                 var artifact = thingService.GetRandomThing(["Maskinarium", "År Noll", "Genlab Alfa"], ["Artefakt"]);
-                console.log(artifacts.indexOf(artifact) > -1);
 
                 while (artifacts.indexOf(artifact) > -1) {
                     artifact = thingService.GetRandomThing(["Maskinarium", "År Noll", "Genlab Alfa"], ["Artefakt"]);
@@ -865,7 +1015,7 @@ app.controller("zonenController",
             $scope.Zonen.Artifacts.Things = artifacts;
         };
 
-        
+
     }
 ]);
 app.controller("prylarController",
@@ -873,7 +1023,7 @@ app.controller("prylarController",
     "$scope", "DataStoreService", "ThingService", function($scope, DataStoreService, ThingService) {
         var thingService = ThingService;
         thingService.SetData(DataStoreService);
-        
+
         $scope.Things = {};
         $scope.Things.Sources = thingService.GetSources();
         $scope.Things.SelectedSources = $scope.Things.Sources.slice();
@@ -887,7 +1037,8 @@ app.controller("prylarController",
         $scope.RollArtifacts = function() {
 
             $scope.Things.RandomList = [];
-            $scope.Things.RandomList.push(thingService.GetRandomThing($scope.Things.SelectedSources, $scope.Things.SelectedTypes));
+            $scope.Things.RandomList.push(thingService
+                .GetRandomThing($scope.Things.SelectedSources, $scope.Things.SelectedTypes));
         };
 
         $scope.toggleSelection = function(source) {
@@ -957,7 +1108,6 @@ app.controller("prylarController",
 
             var effekt = "";
             for (var k = 0; k < unkravline - 1; k++) {
-                console.log(lines[k]);
                 effekt += lines[k];
                 lines.shift();
             }
@@ -1230,7 +1380,6 @@ function Helper() {
                 break;
             }
         }
-        console.log(randomSelection);
         return randomSelection;
     };
     this.RollMutantDieSuccessesOnly = function(numberOfDice) {

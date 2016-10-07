@@ -7,77 +7,87 @@
 }
 
 @font-face {
-  font-family: 'Asul-Regular';
-  src: url('Fonts/Asul-Regular.eot');
-  src: url('Fonts/Asul-Regular.eot?#iefix') format('embedded-opentype'),
-       url('Fonts/Asul-Regular.woff') format('woff'),
-       url('Fonts/Asul-Regular.ttf') format('truetype'),
-       url('Fonts/Asul-Regular.svg#Asul-Regular') format('svg');
+  font-family: 'Asul';
+  font-weight: 400;
+  font-style: normal;
+  src: url('Fonts/Asul-regular/Asul-regular.eot');
+  src: url('Fonts/Asul-regular/Asul-regular.eot?#iefix') format('embedded-opentype'),
+       local('Asul'),
+       local('Asul-regular'),
+       url('Fonts/Asul-regular/Asul-regular.woff2') format('woff2'),
+       url('Fonts/Asul-regular/Asul-regular.woff') format('woff'),
+       url('Fonts/Asul-regular/Asul-regular.ttf') format('truetype'),
+       url('Fonts/Asul-regular/Asul-regular.svg#Asul') format('svg');
 }
 
 @font-face {
-  font-family: 'Asul-Bold';
-  src: url('Fonts/Asul-Bold.eot');
-  src: url('Fonts/Asul-Bold.eot?#iefix') format('embedded-opentype'),
-       url('Fonts/Asul-Bold.woff') format('woff'),
-       url('Fonts/Asul-Bold.ttf') format('truetype'),
-       url('Fonts/Asul-Bold.svg#Asul-Bold') format('svg');
-}
-
-@font-face {
-  font-family: 'Cabin';
+  font-family: 'Asul';
   font-weight: 700;
   font-style: normal;
-  src: url('http://fonts.gstatic.com/s/cabin/v9/0rwIbxvBLLkZ3TvRndzblvesZW2xOQ-xsNqO47m55DA.eot');
-  src: url('http://fonts.gstatic.com/s/cabin/v9/0rwIbxvBLLkZ3TvRndzblvesZW2xOQ-xsNqO47m55DA.eot?#iefix') format('embedded-opentype'),
-       local('Cabin Bold'),
-       local('Cabin-700'),
-       url('http://fonts.gstatic.com/s/cabin/v9/82B-3YlzWJm8zbCrVEmc_nYhjbSpvc47ee6xR_80Hnw.woff2') format('woff2'),
-       url('http://fonts.gstatic.com/s/cabin/v9/haOjnueK8Or1ztuuRtr8dnYhjbSpvc47ee6xR_80Hnw.woff') format('woff'),
-       url('http://fonts.gstatic.com/s/cabin/v9/nHiQo1BypvYzt95zlPq1TvesZW2xOQ-xsNqO47m55DA.ttf') format('truetype'),
-       url('http://fonts.gstatic.com/l/font?kit=mJjUNQHbVFvcEpZzGlJ9HfesZW2xOQ-xsNqO47m55DA&skey=bde0232fb97f4a72&v=v9#Cabin') format('svg');
-}
-
-@font-face {
-  font-family: 'Cabin';
-  font-weight: 700;
-  font-style: italic;
-  src: url('http://fonts.gstatic.com/s/cabin/v9/Ww23LQNlhn4dAm9uegPaX1QlYEbsez9cZjKsNMjLOwM.eot');
-  src: url('http://fonts.gstatic.com/s/cabin/v9/Ww23LQNlhn4dAm9uegPaX1QlYEbsez9cZjKsNMjLOwM.eot?#iefix') format('embedded-opentype'),
-       local('Cabin Bold Italic'),
-       local('Cabin-700italic'),
-       url('http://fonts.gstatic.com/s/cabin/v9/Ww23LQNlhn4dAm9uegPaXwzyDMXhdD8sAj6OAJTFsBI.woff2') format('woff2'),
-       url('http://fonts.gstatic.com/s/cabin/v9/Ww23LQNlhn4dAm9uegPaX73hpw3pgy2gAi-Ip7WPMi0.woff') format('woff'),
-       url('http://fonts.gstatic.com/s/cabin/v9/Ww23LQNlhn4dAm9uegPaXy3USBnSvpkopQaUR-2r7iU.ttf') format('truetype'),
-       url('http://fonts.gstatic.com/l/font?kit=Ww23LQNlhn4dAm9uegPaX6WUboTb-jS2tyCOQMtm97g&skey=ebc162262801060b&v=v9#Cabin') format('svg');
-}
-
-@font-face {
-  font-family: 'Cabin';
-  font-weight: 400;
-  font-style: italic;
-  src: url('http://fonts.gstatic.com/s/cabin/v9/mOLawYJy7-OC1-rKIVMBSQ.eot');
-  src: url('http://fonts.gstatic.com/s/cabin/v9/mOLawYJy7-OC1-rKIVMBSQ.eot?#iefix') format('embedded-opentype'),
-       local('Cabin Italic'),
-       local('Cabin-italic'),
-       url('http://fonts.gstatic.com/s/cabin/v9/H0pnhiw5Sx0_YsHgvze93QLUuEpTyoUstqEm5AMlJo4.woff2') format('woff2'),
-       url('http://fonts.gstatic.com/s/cabin/v9/SYYqINfDCIH45kObNrBWvgLUuEpTyoUstqEm5AMlJo4.woff') format('woff'),
-       url('http://fonts.gstatic.com/s/cabin/v9/Et-v_QIck3adV65yIaqlhg.ttf') format('truetype'),
-       url('http://fonts.gstatic.com/l/font?kit=BHS7p0gcrQK6fgLWORZ4Cg&skey=72a025bcae5df692&v=v9#Cabin') format('svg');
+  src: url('Fonts/Asul-700/Asul-700.eot');
+  src: url('Fonts/Asul-700/Asul-700.eot?#iefix') format('embedded-opentype'),
+       local('Asul Bold'),
+       local('Asul-700'),
+       url('Fonts/Asul-700/Asul-700.woff2') format('woff2'),
+       url('Fonts/Asul-700/Asul-700.woff') format('woff'),
+       url('Fonts/Asul-700/Asul-700.ttf') format('truetype'),
+       url('Fonts/Asul-700/Asul-700.svg#Asul') format('svg');
 }
 
 @font-face {
   font-family: 'Cabin';
   font-weight: 400;
   font-style: normal;
-  src: url('http://fonts.gstatic.com/s/cabin/v9/ClwGbaMfQ5c9QfM1bHNo1g.eot');
-  src: url('http://fonts.gstatic.com/s/cabin/v9/ClwGbaMfQ5c9QfM1bHNo1g.eot?#iefix') format('embedded-opentype'),
+  src: url('Fonts/Cabin-regular/Cabin-regular.eot');
+  src: url('Fonts/Cabin-regular/Cabin-regular.eot?#iefix') format('embedded-opentype'),
        local('Cabin Regular'),
        local('Cabin-regular'),
-       url('http://fonts.gstatic.com/s/cabin/v9/4VMQLG5UaE3m5rr_emmAqaCWcynf_cDxXwCLxiixG1c.woff2') format('woff2'),
-       url('http://fonts.gstatic.com/s/cabin/v9/kJXt72Gt1LyFMZcEKAAvlKCWcynf_cDxXwCLxiixG1c.woff') format('woff'),
-       url('http://fonts.gstatic.com/s/cabin/v9/K6ngFdK5haaaRGBV8waDwA.ttf') format('truetype'),
-       url('http://fonts.gstatic.com/l/font?kit=reMsvhLtR_NipjCwZGPJyg&skey=d53a2c61c6b52b74&v=v9#Cabin') format('svg');
+       url('Fonts/Cabin-regular/Cabin-regular.woff2') format('woff2'),
+       url('Fonts/Cabin-regular/Cabin-regular.woff') format('woff'),
+       url('Fonts/Cabin-regular/Cabin-regular.ttf') format('truetype'),
+       url('Fonts/Cabin-regular/Cabin-regular.svg#Cabin') format('svg');
+}
+
+@font-face {
+  font-family: 'Cabin';
+  font-weight: 700;
+  font-style: normal;
+  src: url('Fonts/Cabin-700/Cabin-700.eot');
+  src: url('Fonts/Cabin-700/Cabin-700.eot?#iefix') format('embedded-opentype'),
+       local('Cabin Bold'),
+       local('Cabin-700'),
+       url('Fonts/Cabin-700/Cabin-700.woff2') format('woff2'),
+       url('Fonts/Cabin-700/Cabin-700.woff') format('woff'),
+       url('Fonts/Cabin-700/Cabin-700.ttf') format('truetype'),
+       url('Fonts/Cabin-700/Cabin-700.svg#Cabin') format('svg');
+}
+
+@font-face {
+  font-family: 'Cabin';
+  font-weight: 400;
+  font-style: italic;
+  src: url('Fonts/Cabin-italic/Cabin-italic.eot');
+  src: url('Fonts/Cabin-italic/Cabin-italic.eot?#iefix') format('embedded-opentype'),
+       local('Cabin Italic'),
+       local('Cabin-italic'),
+       url('Fonts/Cabin-italic/Cabin-italic.woff2') format('woff2'),
+       url('Fonts/Cabin-italic/Cabin-italic.woff') format('woff'),
+       url('Fonts/Cabin-italic/Cabin-italic.ttf') format('truetype'),
+       url('Fonts/Cabin-italic/Cabin-italic.svg#Cabin') format('svg');
+}
+
+@font-face {
+  font-family: 'Cabin';
+  font-weight: 700;
+  font-style: italic;
+  src: url('Fonts/Cabin-700italic/Cabin-700italic.eot');
+  src: url('Fonts/Cabin-700italic/Cabin-700italic.eot?#iefix') format('embedded-opentype'),
+       local('Cabin Bold Italic'),
+       local('Cabin-700italic'),
+       url('Fonts/Cabin-700italic/Cabin-700italic.woff2') format('woff2'),
+       url('Fonts/Cabin-700italic/Cabin-700italic.woff') format('woff'),
+       url('Fonts/Cabin-700italic/Cabin-700italic.ttf') format('truetype'),
+       url('Fonts/Cabin-700italic/Cabin-700italic.svg#Cabin') format('svg');
 }
 
 html,body
@@ -105,12 +115,12 @@ body
 
 button, table
 {
-    font-family: "Asul-Regular";
+    font-family: "Asul";
 }
 
 ul.stats > li
 {
-    font-family: "Asul-Regular";
+    font-family: "Asul";
 }
 
 ul.stats
@@ -136,7 +146,7 @@ textarea
 h1
 {
     font-family: "bilibinregular";
-    font-size: 4rem;
+    font-size: 300%;
     text-transform: uppercase;
     color: #9f4234;
     text-align: center;
@@ -152,15 +162,15 @@ h1
     text-align: center;
     margin-top: -1.5rem;
     letter-spacing: 2rem;
-    font-size: 4rem;
+    font-size: 200%;
 }
 
 h2
 {
     color: #57563c;
-    font-family: "Asul-Bold";
+    font-family: "Asul";
     font-size: 2.5rem;
-    font-weight: normal;
+    font-weight: bold;
     text-transform: uppercase;
 }
 
@@ -176,7 +186,7 @@ h4
 {
     border-bottom: 0.0625rem solid #fefefe;
     border-top: 0.0625rem solid #fefefe;
-    font-family: "Asul-Regular";
+    font-family: "Asul";
     font-weight: bold;
     margin-top: 2rem;
     padding: 0.5rem 0;
@@ -192,7 +202,7 @@ h4
 }
 .frontpage div
 {
-    max-width: 100%;
+    max-width: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
