@@ -1,4 +1,23 @@
 ﻿"use strict";
+$(function () {
+    var containerContentBackgroundHeight = jQuery('.container-content-background').height();
+    var containerContentHeight = jQuery('.container-content').height();
+
+    if (containerContentBackgroundHeight > containerContentHeight) {
+        //jQuery('container-content').height(containerContentBackgroundHeight);
+        jQuery('container-content').height(3000);
+        console.log("BG LARGER");
+        console.log("containerContentBackgroundHeight: " + containerContentBackgroundHeight);
+        console.log("containerContentHeight: " + containerContentHeight);
+        //jQuery('container-content').css('height', containerContentBackgroundHeight);
+    }
+    else {
+        jQuery('.container-content-background').height(containerContentHeight);
+        jQuery('.container-content-background').height(containerContentHeight);
+        console.log("containerContentHeight: "+containerContentHeight);
+        //jQuery('.container-content-background').css('height', containerContentHeight);
+    }
+});
 
 // Robot Class
 /*

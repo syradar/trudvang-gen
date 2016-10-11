@@ -75,6 +75,8 @@
     <Content Include="Content\Fonts\Cabin-italic\Cabin-italic.svg" />
     <Content Include="Content\Fonts\Cabin-regular\Cabin-regular.svg" />
     <Content Include="Content\Images\bg_urkult_sunset.jpg" />
+    <Content Include="Content\Images\header_bg.png" />
+    <Content Include="Content\Images\tumblr_nxltm9LZHa1rcj5g1o1_1280.jpg" />
     <Content Include="packages.config" />
     <Content Include="Content\Fonts\fontawesome-webfont.eot" />
     <Content Include="Content\Fonts\fontawesome-webfont.ttf" />

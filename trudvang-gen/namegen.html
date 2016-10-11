@@ -54,79 +54,82 @@
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
-    </div>
-    <div ng-controller="nameController" class="container container-content">
-        <div class="row">
-            <div class="col-xs-12">
-                <h1>{{'namegen.title' | translate}}</h1>
-                <p>{{'namegen.description' | translate}}</p>
-                <p>{{selectedLanguage}}</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-md-12">
-                <h2>{{'namegen.people.title'|translate}}</h2>
-                <div class="button-trudvang-group">
-                    <p class="button-trudvang" ng-click="GenerateName('Stormlander')">{{'namegen.people.stormlander.button' | translate}}</p>
-                    <p class="button-trudvang" ng-click="GenerateName('Mittlander')">{{'namegen.people.mittlander.button' | translate}}</p>
-                    <p class="button-trudvang" ng-click="GenerateName('Virann')">{{'namegen.people.virann.button' | translate}}</p>
-                    <p class="button-trudvang" ng-click="GenerateName('Elf')">{{'namegen.people.elf.button' | translate}}</p>
-                    <p class="button-trudvang" ng-click="GenerateName('Dwarf')">{{'namegen.people.dwarf.button' | translate}}</p>
-                    <p class="button-trudvang" ng-click="GenerateName('Troll')">{{'namegen.people.troll.button' | translate}}</p>
+</div>
+        <div ng-controller="nameController" class="container container-content">
+            <div class="row">
+                <div class="col-xs-12 trudvang-header">
+                    <h1>{{'namegen.title' | translate}}</h1>
                 </div>
             </div>
-        </div>
-        <div class="row names clearfix">
-            <div class="col-xs-12 col-md-6" ng-if="Names.male">
-                <h3 ng-if="SelectedPeopleName ==='Stormlander'">{{'namegen.people.stormlander.title'|translate}}{{'namegen.people.maleNameString'|translate}}</h3>
-                <h3 ng-if="SelectedPeopleName ==='Mittlander'">{{'namegen.people.mittlander.title'|translate}}{{'namegen.people.maleNameString'|translate}}</h3>
-                <h3 ng-if="SelectedPeopleName ==='Virann'">{{'namegen.people.virann.title'|translate}}{{'namegen.people.maleNameString'|translate}}</h3>
-                <h3 ng-if="SelectedPeopleName ==='Elf'">{{'namegen.people.elf.title'|translate}}{{'namegen.people.maleNameString'|translate}}</h3>
-                <h3 ng-if="SelectedPeopleName ==='Dwarf'">{{'namegen.people.dwarf.title'|translate}}{{'namegen.people.maleNameString'|translate}}</h3>
-                <p ng-repeat="name in Names.male track by $index">{{name}}</p>
-            </div>
-            <div class="col-xs-12 col-md-6" ng-if="Names.female">
-                <h3 ng-if="SelectedPeopleName ==='Stormlander'">{{'namegen.people.stormlander.title'|translate}}{{'namegen.people.femaleNameString'|translate}}</h3>
-                <h3 ng-if="SelectedPeopleName ==='Mittlander'">{{'namegen.people.mittlander.title'|translate}}{{'namegen.people.femaleNameString'|translate}}</h3>
-                <h3 ng-if="SelectedPeopleName ==='Virann'">{{'namegen.people.virann.title'|translate}}{{'namegen.people.femaleNameString'|translate}}</h3>
-                <h3 ng-if="SelectedPeopleName ==='Elf'">{{'namegen.people.elf.title'|translate}}{{'namegen.people.femaleNameString'|translate}}</h3>
-                <p ng-repeat="name in Names.female track by $index">{{name}}</p>
-            </div>
-            <div class="col-xs-12 col-md-6" ng-if="Names.troll">
-                <h3 ng-if="SelectedPeopleName ==='Troll'">{{'namegen.people.troll.title'|translate}}{{'namegen.people.trollNameString'|translate}}</h3>
-                <p ng-repeat="name in Names.troll track by $index">{{name}}</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-md-12"></div>
-            <div class="col-xs-12 col-md-12">
-                <h2 class="">{{'namegen.place.title'|translate}}</h2>
-                <div class="button-trudvang-group">
-                    <p class="button-trudvang" ng-click="GeneratePlaceName('Town')">{{'namegen.place.town'|translate}}</p>
-                    <p class="button-trudvang" ng-click="GeneratePlaceName('Tavern')">{{'namegen.place.tavern'|translate}}</p>
-                    <p class="button-trudvang" ng-click="GeneratePlaceName('Plant')">{{'namegen.place.plant'|translate}}</p>
+            <div class="row">
+                <div class="col-xs-12">
+                    <p>{{'namegen.description' | translate}}</p>
                 </div>
             </div>
-        </div>
-        <div class="row names clearfix">
-            <div class="col-xs-12 col-md-4" ng-show="PlaceNames.Town">
-                <h3>{{'namegen.place.town'|translate}}{{'namegen.place.nameString'|translate}}</h3>
-                <p ng-repeat="name in PlaceNames.Town track by $index">{{name}}</p>
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <h2>{{'namegen.people.title'|translate}}</h2>
+                    <div class="button-trudvang-group">
+                        <p class="button-trudvang" ng-click="GenerateName('Stormlander')">{{'namegen.people.stormlander.button' | translate}}</p>
+                        <p class="button-trudvang" ng-click="GenerateName('Mittlander')">{{'namegen.people.mittlander.button' | translate}}</p>
+                        <p class="button-trudvang" ng-click="GenerateName('Virann')">{{'namegen.people.virann.button' | translate}}</p>
+                        <p class="button-trudvang" ng-click="GenerateName('Elf')">{{'namegen.people.elf.button' | translate}}</p>
+                        <p class="button-trudvang" ng-click="GenerateName('Dwarf')">{{'namegen.people.dwarf.button' | translate}}</p>
+                        <p class="button-trudvang" ng-click="GenerateName('Troll')">{{'namegen.people.troll.button' | translate}}</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-xs-12 col-md-4" ng-show="PlaceNames.Tavern">
-                <h3>{{'namegen.place.tavern'|translate}}{{'namegen.place.nameString'|translate}}</h3>
-                <p ng-repeat="name in PlaceNames.Tavern track by $index">{{name}}</p>
+            <div class="row names clearfix">
+                <div class="col-xs-12 col-md-6" ng-if="Names.male">
+                    <h3 ng-if="SelectedPeopleName ==='Stormlander'">{{'namegen.people.stormlander.title'|translate}}{{'namegen.people.maleNameString'|translate}}</h3>
+                    <h3 ng-if="SelectedPeopleName ==='Mittlander'">{{'namegen.people.mittlander.title'|translate}}{{'namegen.people.maleNameString'|translate}}</h3>
+                    <h3 ng-if="SelectedPeopleName ==='Virann'">{{'namegen.people.virann.title'|translate}}{{'namegen.people.maleNameString'|translate}}</h3>
+                    <h3 ng-if="SelectedPeopleName ==='Elf'">{{'namegen.people.elf.title'|translate}}{{'namegen.people.maleNameString'|translate}}</h3>
+                    <h3 ng-if="SelectedPeopleName ==='Dwarf'">{{'namegen.people.dwarf.title'|translate}}{{'namegen.people.maleNameString'|translate}}</h3>
+                    <p ng-repeat="name in Names.male track by $index">{{name}}</p>
+                </div>
+                <div class="col-xs-12 col-md-6" ng-if="Names.female">
+                    <h3 ng-if="SelectedPeopleName ==='Stormlander'">{{'namegen.people.stormlander.title'|translate}}{{'namegen.people.femaleNameString'|translate}}</h3>
+                    <h3 ng-if="SelectedPeopleName ==='Mittlander'">{{'namegen.people.mittlander.title'|translate}}{{'namegen.people.femaleNameString'|translate}}</h3>
+                    <h3 ng-if="SelectedPeopleName ==='Virann'">{{'namegen.people.virann.title'|translate}}{{'namegen.people.femaleNameString'|translate}}</h3>
+                    <h3 ng-if="SelectedPeopleName ==='Elf'">{{'namegen.people.elf.title'|translate}}{{'namegen.people.femaleNameString'|translate}}</h3>
+                    <p ng-repeat="name in Names.female track by $index">{{name}}</p>
+                </div>
+                <div class="col-xs-12 col-md-6" ng-if="Names.troll">
+                    <h3 ng-if="SelectedPeopleName ==='Troll'">{{'namegen.people.troll.title'|translate}}{{'namegen.people.trollNameString'|translate}}</h3>
+                    <p ng-repeat="name in Names.troll track by $index">{{name}}</p>
+                </div>
             </div>
-            <div class="col-xs-12 col-md-4" ng-show="PlaceNames.Plant">
-                <h3>{{'namegen.place.plant'|translate}}{{'namegen.place.nameString'|translate}}</h3>
-                <p ng-repeat="name in PlaceNames.Plant track by $index">{{name}}</p>
+            <div class="row">
+                <div class="col-xs-12 col-md-12"></div>
+                <div class="col-xs-12 col-md-12">
+                    <h2 class="">{{'namegen.place.title'|translate}}</h2>
+                    <div class="button-trudvang-group">
+                        <p class="button-trudvang" ng-click="GeneratePlaceName('Town')">{{'namegen.place.town'|translate}}</p>
+                        <p class="button-trudvang" ng-click="GeneratePlaceName('Tavern')">{{'namegen.place.tavern'|translate}}</p>
+                        <p class="button-trudvang" ng-click="GeneratePlaceName('Plant')">{{'namegen.place.plant'|translate}}</p>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row names clearfix">
-            <div class="col-xs-12 filler">
+            <div class="row names clearfix">
+                <div class="col-xs-12 col-md-4" ng-show="PlaceNames.Town">
+                    <h3>{{'namegen.place.town'|translate}}{{'namegen.place.nameString'|translate}}</h3>
+                    <p ng-repeat="name in PlaceNames.Town track by $index">{{name}}</p>
+                </div>
+                <div class="col-xs-12 col-md-4" ng-show="PlaceNames.Tavern">
+                    <h3>{{'namegen.place.tavern'|translate}}{{'namegen.place.nameString'|translate}}</h3>
+                    <p ng-repeat="name in PlaceNames.Tavern track by $index">{{name}}</p>
+                </div>
+                <div class="col-xs-12 col-md-4" ng-show="PlaceNames.Plant">
+                    <h3>{{'namegen.place.plant'|translate}}{{'namegen.place.nameString'|translate}}</h3>
+                    <p ng-repeat="name in PlaceNames.Plant track by $index">{{name}}</p>
+                </div>
+            </div>
+            <div class="row names clearfix">
+                <div class="col-xs-12 filler">
 
+                </div>
             </div>
         </div>
-    </div>
 </body>
 </html>
