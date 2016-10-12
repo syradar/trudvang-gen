@@ -98,17 +98,22 @@
                 <div class="button-trudvang-group">
                     <p class="button-trudvang" ng-click="GenerateThingName('Plant')">{{'thingnamegen.misc.plant'|translate}}</p>
                     <p class="button-trudvang" ng-click="GenerateThingName('Ale')">{{'thingnamegen.misc.ale'|translate}}</p>
+                    <p class="button-trudvang" ng-click="GenerateThingName('Horse')">{{'thingnamegen.misc.horse'|translate}}</p>
                 </div>
             </div>
         </div>
         <div class="row names clearfix">
-            <div class="col-xs-12 col-md-6 namelist" ng-show="ThingNames.Plant">
+            <div class="col-xs-12 col-md-4 namelist" ng-show="ThingNames.Plant">
                 <h3>{{'thingnamegen.misc.plant'|translate}}{{'thingnamegen.nameString'|translate}}</h3>
                 <p ng-repeat="name in ThingNames.Plant track by $index">{{name}}</p>
             </div>
-            <div class="col-xs-12 col-md-6 namelist" ng-show="ThingNames.Ale">
+            <div class="col-xs-12 col-md-4 namelist" ng-show="ThingNames.Ale">
                 <h3>{{'thingnamegen.misc.ale'|translate}}{{'thingnamegen.nameString'|translate}}</h3>
                 <p ng-repeat="name in ThingNames.Ale track by $index">{{name}}</p>
+            </div>
+            <div class="col-xs-12 col-md-4 namelist" ng-show="ThingNames.Horse">
+                <h3>{{'thingnamegen.misc.horse'|translate}}{{'thingnamegen.nameString'|translate}}</h3>
+                <p ng-repeat="name in ThingNames.Horse track by $index">{{name}}</p>
             </div>
         </div>
         <div class="row names clearfix">

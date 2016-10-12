@@ -666,15 +666,13 @@ function Name() {
         dss = dataStoreService;
         data = dss.getNameData();
     };
+    var lastNames = {};
     this.GetRandomNames = function(language, people, numberOfNames) {
         people = people.toLowerCase();
-        //var prefixLength = data.people[people]["prefix"].length;
-        //var suffixLength = {};
         var names = {};
         var name;
-        //var lastName = "";
+
         if (people === "troll") {
-            //suffixLength = data.people.troll.suffix.length;
             names.troll = [];
             for (var i = 0; i < numberOfNames; i++) {
                 name = helper.GetRandomFromList(data[language].people.troll.prefix) +
@@ -686,7 +684,6 @@ function Name() {
         }
 
         if (data[language].people[people].suffix.hasOwnProperty("male")) {
-            //suffixLength.male = data.people[people].suffix.male.length;
             names.male = [];
             for (var j = 0; j < numberOfNames; j++) {
                 name = helper.GetRandomFromList(data[language].people[people].prefix) +
@@ -698,7 +695,6 @@ function Name() {
 
         }
         if (data[language].people[people].suffix.hasOwnProperty("female")) {
-            //suffixLength.female = data.people[people].suffix.female.length;
             names.female = [];
             for (var k = 0; k < numberOfNames; k++) {
                 name = helper.GetRandomFromList(data[language].people[people].prefix) +
@@ -711,20 +707,75 @@ function Name() {
 
         return names;
     };
+  
+    this.GetRandomLastNames = function(language, type, numberOfNames) {
+        type = type.toLowerCase();
+        
+        var name;
+        // HEROIC
+        if (type === "heroic") {
+            lastNames[type] = [];
+            if (data[language].people.lastnames[type].hasOwnProperty("prefix") &&
+                data[language].people.lastnames[type].hasOwnProperty("suffix")) {
+                //suffixLength.male = data.people[people].suffix.male.length;
+                
+                for (var j = 0; j < numberOfNames; j++) {
+                    name = helper.GetRandomFromList(data[language].people.lastnames[type].prefix) +
+                        helper.GetRandomFromList(data[language].people.lastnames[type].suffix);
+
+                    name = helper.Capitalize(name);
+                    lastNames[type].push(name);
+                }
+
+            }
+        }
+        // LINEAGE
+        if (type === "lineage") {
+            lastNames[type] = [];
+            var markovg = new markov(3, 12);
+            var lines = data[language].people.lastnames.lineage;
+
+            for (var i = 0; i < lines.length; i++) {
+                markovg.feed(lines[i]);
+            }
+
+            for (var k = 0; k < numberOfNames; k++) {
+                name = markovg.generate();
+                lastNames[type].push(name);
+            }
+        }
+        if (type === "peasant") {
+            lastNames[type] = [];
+   
+            for (var l = 0; l < numberOfNames; l++) {
+                var choice = helper.GetRandomInt(0, 2);
+                if (choice === 0) {
+                    name = helper.GetRandomFromList(data[language].people.lastnames[type].profession);
+                } else {
+                    name = helper.GetRandomFromList(data[language].people.lastnames[type].nickname);
+                }
+                lastNames[type].push(name);
+            }
+            
+        }
+        console.log(lastNames);
+        return lastNames;
+    };
 
     this.GetRandomPlaceNames = function(language, type, numberOfNames) {
         type = type.toLowerCase();
         var names = [];
         var name;
         for (var i = 0; i < numberOfNames; i++) {
-            name = helper.GetRandomFromList(data[language].place[type].prefix) + data[language].nameSpacer +
+            name = helper.GetRandomFromList(data[language].place[type].prefix) +
+                data[language].nameSpacer +
                 helper.GetRandomFromList(data[language].place[type].suffix);
             name = helper.Capitalize(name);
             names.push(name);
         }
         return names;
     };
-    this.GetRandomThingNames = function (language, type, numberOfNames) {
+    this.GetRandomThingNames = function(language, type, numberOfNames) {
         type = type.toLowerCase();
         var names = [];
         var name;
@@ -732,7 +783,7 @@ function Name() {
         var isAle = (type === "ale");
         console.log(isAle);
         for (var i = 0; i < numberOfNames; i++) {
-            if (hasAlone && helper.GetRandomInt(0,5)===0) {
+            if (hasAlone && helper.GetRandomInt(0, 5) === 0) {
                 name = helper.GetRandomFromList(data[language].thing[type].alone);
             } else {
                 var prefix = helper.GetRandomFromList(data[language].thing[type].prefix);
@@ -751,26 +802,85 @@ function Name() {
 
                 name = prefix + data[language].nameSpacer + suffix;
             }
-            
+
             name = helper.Capitalize(name);
             names.push(name);
         }
         return names;
     };
-    /*
-    function LastNames(people) {
-        if (data.people[people].hasOwnProperty("lastnames")) {
-            if (helper.GetRandomInt(0, 6) + 1 >= 0) { //5
-                var numberOfLastnames = Object.keys(data.people[people].lastnames).length;
-                var lastnameType = Object.keys(data.people[people].lastnames)[helper
-                    .GetRandomInt(0, numberOfLastnames)];
-                lastName = helper.GetRandomFromList(data.people[people].lastnames[lastnameType]);
-                name = helper.Capitalize(name) + " " + helper.Capitalize(lastName);
-            } else {
-                name = helper.Capitalize(name);
-            }
+
+    function markov(n1, max1) {
+        var self = this;
+        // Order (or length) of each ngram
+        var n = n1;
+        // What is the maximum amount we will generate?
+        var max = max1;
+        // An object as dictionary
+        // each ngram is the key, a list of possible next elements are the values
+        var ngrams = {};
+        // A separate array of possible beginnings to generated text
+        var beginnings = [];
+        this.beg = function ()
+        {
+            return ngrams;
         }
-    }*/
+        // A function to feed in text to the markov chain
+        this.feed = function(text) {
+
+            // Discard this line if it's too short
+            if (text.length < this.n) {
+                return false;
+            }
+
+            // Store the first ngram of this line
+            var beginning = text.substring(0, n);
+            // Is this a new one?
+            if (!helper.Contains(beginnings, beginning)) {
+                beginnings.push(beginning);
+            }
+
+            // Now let's go through everything and create the dictionary
+            for (var i = 0; i < text.length - n; i++) {
+                var gram = text.substring(i, i + n);
+                var next = text.charAt(i + n);
+                // Is this a new one?
+                if (!ngrams.hasOwnProperty(gram)) {
+                    ngrams[gram] = [];
+                }
+                // Add to the list
+                ngrams[gram].push(next);
+            }
+        };
+
+        // Generate a text from the information ngrams
+        this.generate = function() {
+
+            // Get a random  beginning 
+            var current = helper.GetRandomFromList(beginnings);
+            var output = current;
+
+            // Generate a new token max number of times
+            for (var i = 0; i < max; i++) {
+                // If this is a valid ngram
+                if (ngrams.hasOwnProperty(current)) {
+                    // What are all the possible next tokens
+                    var possibleNext = ngrams[current];
+                    // Pick one randomly
+                    var next = helper.GetRandomFromList(possibleNext);
+                    // Add to the output
+                    output += next;
+                    // Get the last N entries of the output; we'll use this to look up
+                    // an ngram in the next iteration of the loop
+                    current = output.substring(output.length - n, output.length);
+                    
+                } else {
+                    break;
+                }
+            }
+            // Here's what we got!
+            return output;
+        };
+    }
 
     return this;
 }
@@ -778,8 +888,8 @@ function Name() {
 var app = angular.module("trudvangHelper", ["ngSanitize", "pascalprecht.translate"]);
 
 app.config([
-    "$translateProvider", function($translateProvider, DataStoreService) {
-        var dss = DataStoreService;
+    "$translateProvider", function($translateProvider/*, DataStoreService*/) {
+        //var dss = DataStoreService;
         $translateProvider.translations("en",
         {
             "changeLanguage": "Language",
@@ -789,7 +899,7 @@ app.config([
             "namegen": {
                 "title": "Character Names",
                 "description":
-                    "Generate names for PCs and NPCs. The names are generated from prefix and suffix released by RiotMinds. Later on names could be generated with Markov Chains to produce even more random names.",
+                    "Generate names for PCs and NPCs. The names are generated from prefix and suffix released by RiotMinds. Later on names could be generated with Markov Chains to produce even more random names. Right now the lineage names are generated with Markov Chains.",
                 "people": {
                     "title": "People",
                     "maleNameString": " male names",
@@ -820,13 +930,14 @@ app.config([
                         "title": "Trollish"
                     }
                 },
-                "place": {
-                    "title": "Places and things",
-                    "nameString": " names",
-                    "town": "Town",
-                    "tavern": "Tavern",
-                    "plant": "Plant"
+                "lastnames": {
+                    "title": "Surnames, epithets and lineages",
+                    "description": "I need help with more names!",
+                    "heroic": "Heroic",
+                    "lineage": "Lineage",
+                    "peasant": "Peasant"
                 }
+
             },
             "placenamegen": {
                 "title": "Place Names",
@@ -845,17 +956,19 @@ app.config([
                         "mountain": "Mountain",
                         "lake": "Lake"
                     }
-                    
+
                 }
             },
             "thingnamegen": {
                 "title": "Thing Names",
-                "description": "Generate names for objects. Ship name inspiration taken from Rudolf Simek's article <a href='http://ssns.org.uk/resources/Documents/NorthernStudies/Vol13/Simek_1979_Vol_13_pp_26_36.pdf'>Old norse ship names and ship terms</a>.",
+                "description":
+                    "Generate names for objects. Ship name inspiration taken from Rudolf Simek's article <a href='http://ssns.org.uk/resources/Documents/NorthernStudies/Vol13/Simek_1979_Vol_13_pp_26_36.pdf'>Old norse ship names and ship terms</a>.",
                 "nameString": " names",
                 "misc": {
                     "title": "Miscellaneous",
                     "plant": "Plant",
-                    "ale": "Ale"
+                    "ale": "Ale",
+                    "horse": "Horse"
                 },
                 "items": {
                     "title": "Items",
@@ -940,10 +1053,10 @@ app.controller("appController",
             {
                 name: "Character names",
                 path: "namegen.html"
-            },{
+            }, {
                 name: "Place names",
                 path: "placenamegen.html"
-            },{
+            }, {
                 name: "Thing names",
                 path: "thingnamegen.html"
             }
@@ -967,6 +1080,8 @@ app.controller("nameController",
 
         $scope.Names = {};
         $scope.SelectedPeopleName = "";
+        $scope.LastNames = {};
+        $scope.SelectedLastName = "";
         $scope.PlaceNames = {};
         $scope.SelectedPlaceName = "";
         $scope.ThingNames = {};
@@ -981,14 +1096,16 @@ app.controller("nameController",
             $scope.SelectedPeopleName = helper.Capitalize(people);
             $scope.Names = nameService.GetRandomNames($scope.selectedLanguage, people, 10);
         };
+        $scope.GenerateLastName = function(type) {
+            $scope.SelectedLastName = helper.Capitalize(type);
+            $scope.LastNames = nameService.GetRandomLastNames($scope.selectedLanguage, type, 10);
+        };
         $scope.GeneratePlaceName = function(place) {
             $scope.SelectedPlaceName = helper.Capitalize(place);
-            
             $scope.PlaceNames[place] = nameService.GetRandomPlaceNames($scope.selectedLanguage, place, 10);
         };
-        $scope.GenerateThingName = function (thing) {
+        $scope.GenerateThingName = function(thing) {
             $scope.SelectedThingName = helper.Capitalize(thing);
-            
             $scope.ThingNames[thing] = nameService.GetRandomThingNames($scope.selectedLanguage, thing, 10);
         };
     }
@@ -1426,6 +1543,10 @@ app.directive("bnRepeatDelimiter",
     });
 
 function Helper() {
+    this.Trim = function(str) {
+        return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+    }
+
     this.GetRandomInt = function(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
@@ -1566,6 +1687,73 @@ function Helper() {
     };
 }
 
+// A MarkovGenerate object
+function MarkovGenerator(n, max) {
+    // Order (or length) of each ngram
+    this.n = n;
+    // What is the maximum amount we will generate?
+    this.max = max;
+    // An object as dictionary
+    // each ngram is the key, a list of possible next elements are the values
+    this.ngrams = {};
+    // A separate array of possible beginnings to generated text
+    this.beginnings = [];
+
+    // A function to feed in text to the markov chain
+    this.feed = function (text) {
+
+        // Discard this line if it's too short
+        if (text.length < this.n) {
+            return false;
+        }
+
+        // Store the first ngram of this line
+        var beginning = text.substring(0, this.n);
+        this.beginnings.push(beginning);
+
+        // Now let's go through everything and create the dictionary
+        for (var i = 0; i < text.length - this.n; i++) {
+            var gram = text.substr(i, i + this.n);
+            var next = text.charAt(i + this.n);
+            // Is this a new one?
+            if (!this.ngrams.hasOwnProperty(gram)) {
+                this.ngrams[gram] = [];
+            }
+            // Add to the list
+            this.ngrams[gram].push(next);
+        }
+    }
+
+    // Generate a text from the information ngrams
+    this.generate = function () {
+
+        // Get a random  beginning 
+        var current = this.beginnings.choice();
+        var output = current;
+
+        // Generate a new token max number of times
+        for (var i = 0; i < this.max; i++) {
+            // If this is a valid ngram
+            if (this.ngrams.hasOwnProperty(current)) {
+                // What are all the possible next tokens
+                var possibleNext = this.ngrams[current];
+                // Pick one randomly
+                var next = possibleNext.choice();
+                // Add to the output
+                output += next;
+                // Get the last N entries of the output; we'll use this to look up
+                // an ngram in the next iteration of the loop
+                current = output.substring(output.length - this.n, output.length);
+            } else {
+                break;
+            }
+        }
+        // Here's what we got!
+        return output;
+    }
+    return this;
+}
+
 function pick(arg, def) {
     return (typeof arg == "undefined" ? def : arg);
 }
@@ -1578,3 +1766,9 @@ String.prototype.replaceAll = function(search, replace) {
     }
     return this.split(search).join(replace);
 };
+
+// ReSharper disable once NativeTypePrototypeExtending
+Array.prototype.choice = function () {
+    var i = Math.floor(Math.random(this.length));
+    return this[i];
+}

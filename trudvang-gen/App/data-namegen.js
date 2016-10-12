@@ -57,35 +57,6 @@
                         "wa",
                         "wen"
                     ]
-                },
-                "lastnames": {
-                    "family": [
-                        "swaahndril",
-                        "culihan",
-                        "gunnrahóel",
-                        "navor'na",
-                        "gwendan",
-                        "luwndhinn",
-                        "lehwgrhein",
-                        "wallhin"
-                    ],
-                    "epithets": [
-                        "wyrmslayer",
-                        "trollchopper",
-                        "windrider"
-                    ],
-                    "profession": [
-                        "smith",
-                        "farmer",
-                        "breeder",
-                        "logger"
-                    ],
-                    "nickname": [
-                        "tamper",
-                        "askew nose",
-                        "harelip",
-                        "trolleye"
-                    ]
                 }
             },
             "stormlander": {
@@ -418,6 +389,53 @@
                     "ygel",
                     "yt"
                 ]
+            },
+            "lastnames": {
+                "lineage": [
+                    "swaahndril",
+                    "swaansjhoe",
+                    "culihan",
+                    "gunnrahoel",
+                    "navorna",
+                    "gwendan",
+                    "luwndhinn",
+                    "lehwgrhein",
+                    "wallhin",
+                    "ahlbwerg",
+                    "ahlgrhein",
+                    "ahlsthra",
+                    "beehkmarn",
+                    "bweergdahan",
+                    "bwierger",
+                    "bwerglihn",
+                    "bweerglundha"
+                ],
+                "heroic": {
+                    "prefix": [
+                        "wyrm",
+                        "troll",
+                        "wind"
+                    ],
+                    "suffix": [
+                        "slayer",
+                        "chopper",
+                        "rider",
+                    ]
+                },
+                "peasant": {
+                    "profession": [
+                        "smith",
+                        "farmer",
+                        "breeder",
+                        "logger"
+                    ],
+                    "nickname": [
+                        "tamper",
+                        "askew nose",
+                        "harelip",
+                        "trolleye"
+                    ]
+                }
             }
         },
         "place": {
@@ -1394,6 +1412,41 @@
                     "dreki",
                     "cow of the fjord",
                     "woodbag"
+                ]
+            },
+            "horse": {
+                "prefix": [
+                    "gift of the",
+                    "moon",
+                    "night",
+                    "arrow",
+                    "silver",
+                    "sun",
+                    "star",
+                    "lightning"
+                ],
+                "suffix": [
+                   "elves",
+                   "eagle",
+                   "sword",
+                   "axe",
+                   "leaf",
+                   "eagle",
+                   "fate",
+                   "fire",
+                   "hawk",
+                   "bliss"
+                ],
+                "alone": [
+                    "wind",
+                    "hawk",
+                    "gryphon",
+                    "dragon",
+                    "swan",
+                    "happiness",
+                    "lightning",
+                    "banner",
+                    "blossom"
                 ]
             }
         }
