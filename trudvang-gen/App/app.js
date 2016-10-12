@@ -1,23 +1,4 @@
 ﻿"use strict";
-$(function () {
-    var containerContentBackgroundHeight = jQuery('.container-content-background').height();
-    var containerContentHeight = jQuery('.container-content').height();
-
-    if (containerContentBackgroundHeight > containerContentHeight) {
-        //jQuery('container-content').height(containerContentBackgroundHeight);
-        jQuery('container-content').height(3000);
-        console.log("BG LARGER");
-        console.log("containerContentBackgroundHeight: " + containerContentBackgroundHeight);
-        console.log("containerContentHeight: " + containerContentHeight);
-        //jQuery('container-content').css('height', containerContentBackgroundHeight);
-    }
-    else {
-        jQuery('.container-content-background').height(containerContentHeight);
-        jQuery('.container-content-background').height(containerContentHeight);
-        console.log("containerContentHeight: "+containerContentHeight);
-        //jQuery('.container-content-background').css('height', containerContentHeight);
-    }
-});
 
 // Robot Class
 /*
@@ -308,7 +289,6 @@ function Thing() {
 
     return this;
 }*/
-
 
 /*function Danger() {
     var danger = {};
@@ -737,8 +717,8 @@ function Name() {
         var names = [];
         var name;
         for (var i = 0; i < numberOfNames; i++) {
-            name = helper.GetRandomFromList(data[language][type].prefix) +
-                helper.GetRandomFromList(data[language][type].suffix);
+            name = helper.GetRandomFromList(data[language].place[type].prefix) + data[language].nameSpacer +
+                helper.GetRandomFromList(data[language].place[type].suffix);
             name = helper.Capitalize(name);
             names.push(name);
         }
@@ -774,7 +754,7 @@ app.config([
                 "description": "Tools for Game Masters and Players!"
             },
             "namegen": {
-                "title": "Names",
+                "title": "Character Names",
                 "description":
                     "Generate names for PCs and NPCs. The names are generated from prefix and suffix released by RiotMinds. Later on names could be generated with Markov Chains to produce even more random names.",
                 "people": {
@@ -814,6 +794,25 @@ app.config([
                     "tavern": "Tavern",
                     "plant": "Plant"
                 }
+            },"placenamegen": {
+                "title": "Place Names",
+                "description":
+                    "Generate names for places and landscapes.",
+                "place": {
+                    "nameString": " names",
+                    "civilization": {
+                        "title": "Civilization",
+                        "town": "Town",
+                        "tavern": "Tavern"
+                    },
+                    "terrain": {
+                        "title": "Terrain",
+                        "river": "River",
+                        "mountain": "Mountain",
+                        "lake": "Lake"
+                    }
+                    
+                }
             }
         });
 
@@ -824,7 +823,7 @@ app.config([
                 "description": "Verktyg för Spelledare och spelare!"
             },
             "namegen": {
-                "title": "Namn",
+                "title": "Karaktärsnamn",
                 "description":
                     "Skapa namn för rollpersoner och spelledarpersoner. Namnen skapas från prefix och suffix släppta av RiotMinds. Planer att skapa namn med hjälp av Markovkedjor för att skapa mer slumpartade namn.",
                 "people": {
@@ -889,8 +888,14 @@ app.controller("appController",
         var dss = DataStoreService;
         $scope.Links = [
             {
-                name: "Name Generator",
+                name: "Character names",
                 path: "namegen.html"
+            },{
+                name: "Place names",
+                path: "placenamegen.html"
+            },{
+                name: "Thing names",
+                path: "thingnamegen.html"
             }
         ];
         $scope.changeLanguage = function(langKey) {
@@ -928,6 +933,11 @@ app.controller("nameController",
             $scope.SelectedPlaceName = helper.Capitalize(place);
             
             $scope.PlaceNames[place] = nameService.GetRandomPlaceNames($scope.selectedLanguage, place, 10);
+        };
+        $scope.GenerateThingName = function (thing) {
+            $scope.SelectedThingName = helper.Capitalize(thing);
+            
+            $scope.ThingNames[thing] = nameService.GetRandomThingNames($scope.selectedLanguage, thing, 10);
         };
     }
 ]);
