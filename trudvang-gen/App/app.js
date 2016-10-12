@@ -853,7 +853,7 @@ app.config([
                 "description": "Generate names for objects. Ship name inspiration taken from Rudolf Simek's article <a href='http://ssns.org.uk/resources/Documents/NorthernStudies/Vol13/Simek_1979_Vol_13_pp_26_36.pdf'>Old norse ship names and ship terms</a>.",
                 "nameString": " names",
                 "misc": {
-                    "title": "Plants and Ale",
+                    "title": "Miscellaneous",
                     "plant": "Plant",
                     "ale": "Ale"
                 },

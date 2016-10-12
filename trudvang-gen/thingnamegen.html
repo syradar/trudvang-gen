@@ -69,26 +69,6 @@
         <div class="row">
             <div class="col-xs-12 col-md-12"></div>
             <div class="col-xs-12 col-md-12">
-                <h2 class="">{{'thingnamegen.misc.title'|translate}}</h2>
-                <div class="button-trudvang-group">
-                    <p class="button-trudvang" ng-click="GenerateThingName('Plant')">{{'thingnamegen.misc.plant'|translate}}</p>
-                    <p class="button-trudvang" ng-click="GenerateThingName('Ale')">{{'thingnamegen.misc.ale'|translate}}</p>
-                </div>
-            </div>
-        </div>
-        <div class="row names clearfix">
-            <div class="col-xs-12 col-md-6 namelist" ng-show="ThingNames.Plant">
-                <h3>{{'thingnamegen.misc.plant'|translate}}{{'thingnamegen.nameString'|translate}}</h3>
-                <p ng-repeat="name in ThingNames.Plant track by $index">{{name}}</p>
-            </div>
-            <div class="col-xs-12 col-md-6 namelist" ng-show="ThingNames.Ale">
-                <h3>{{'thingnamegen.misc.ale'|translate}}{{'thingnamegen.nameString'|translate}}</h3>
-                <p ng-repeat="name in ThingNames.Ale track by $index">{{name}}</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-md-12"></div>
-            <div class="col-xs-12 col-md-12">
                 <h2 class="">{{'thingnamegen.items.title'|translate}}</h2>
                 <div class="button-trudvang-group">
                     <p class="button-trudvang" ng-click="GenerateThingName('Weapon')">{{'thingnamegen.items.weapon'|translate}}</p>
@@ -109,6 +89,26 @@
             <div class="col-xs-12 col-md-4 namelist" ng-show="ThingNames.Ship">
                 <h3>{{'thingnamegen.items.ship'|translate}}{{'thingnamegen.nameString'|translate}}</h3>
                 <p ng-repeat="name in ThingNames.Ship track by $index">{{name}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-12"></div>
+            <div class="col-xs-12 col-md-12">
+                <h2 class="">{{'thingnamegen.misc.title'|translate}}</h2>
+                <div class="button-trudvang-group">
+                    <p class="button-trudvang" ng-click="GenerateThingName('Plant')">{{'thingnamegen.misc.plant'|translate}}</p>
+                    <p class="button-trudvang" ng-click="GenerateThingName('Ale')">{{'thingnamegen.misc.ale'|translate}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="row names clearfix">
+            <div class="col-xs-12 col-md-6 namelist" ng-show="ThingNames.Plant">
+                <h3>{{'thingnamegen.misc.plant'|translate}}{{'thingnamegen.nameString'|translate}}</h3>
+                <p ng-repeat="name in ThingNames.Plant track by $index">{{name}}</p>
+            </div>
+            <div class="col-xs-12 col-md-6 namelist" ng-show="ThingNames.Ale">
+                <h3>{{'thingnamegen.misc.ale'|translate}}{{'thingnamegen.nameString'|translate}}</h3>
+                <p ng-repeat="name in ThingNames.Ale track by $index">{{name}}</p>
             </div>
         </div>
         <div class="row names clearfix">
