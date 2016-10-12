@@ -724,6 +724,39 @@ function Name() {
         }
         return names;
     };
+    this.GetRandomThingNames = function (language, type, numberOfNames) {
+        type = type.toLowerCase();
+        var names = [];
+        var name;
+        var hasAlone = data[language].thing[type].hasOwnProperty("alone");
+        var isAle = (type === "ale");
+        console.log(isAle);
+        for (var i = 0; i < numberOfNames; i++) {
+            if (hasAlone && helper.GetRandomInt(0,5)===0) {
+                name = helper.GetRandomFromList(data[language].thing[type].alone);
+            } else {
+                var prefix = helper.GetRandomFromList(data[language].thing[type].prefix);
+                var suffix = helper.GetRandomFromList(data[language].thing[type].suffix);
+
+                if (isAle && prefix === "people") {
+                    var randomPeople = helper.GetRandomFromList(["mittlander", "dwarf", "stormlander", "virann"]);
+                    prefix = this.GetRandomNames(language, randomPeople, 1);
+                    console.log(prefix);
+                    if (helper.GetRandomInt(0, 2) === 0 && prefix.hasOwnProperty("female")) {
+                        prefix = prefix.female[0] + data[language].plural;
+                    } else {
+                        prefix = prefix.male[0] + data[language].plural;
+                    }
+                }
+
+                name = prefix + data[language].nameSpacer + suffix;
+            }
+            
+            name = helper.Capitalize(name);
+            names.push(name);
+        }
+        return names;
+    };
     /*
     function LastNames(people) {
         if (data.people[people].hasOwnProperty("lastnames")) {
@@ -794,7 +827,8 @@ app.config([
                     "tavern": "Tavern",
                     "plant": "Plant"
                 }
-            },"placenamegen": {
+            },
+            "placenamegen": {
                 "title": "Place Names",
                 "description":
                     "Generate names for places and landscapes.",
@@ -812,6 +846,22 @@ app.config([
                         "lake": "Lake"
                     }
                     
+                }
+            },
+            "thingnamegen": {
+                "title": "Thing Names",
+                "description": "Generate names for objects. Ship name inspiration taken from Rudolf Simek's article <a href='http://ssns.org.uk/resources/Documents/NorthernStudies/Vol13/Simek_1979_Vol_13_pp_26_36.pdf'>Old norse ship names and ship terms</a>.",
+                "nameString": " names",
+                "misc": {
+                    "title": "Plants and Ale",
+                    "plant": "Plant",
+                    "ale": "Ale"
+                },
+                "items": {
+                    "title": "Items",
+                    "weapon": "Weapon",
+                    "relic": "Ancient relics",
+                    "ship": "Ship"
                 }
             }
         });
@@ -919,6 +969,8 @@ app.controller("nameController",
         $scope.SelectedPeopleName = "";
         $scope.PlaceNames = {};
         $scope.SelectedPlaceName = "";
+        $scope.ThingNames = {};
+        $scope.SelectedThingName = "";
 
         var updateSelectedLanguage = function() {
             $scope.selectedLanguage = dss.GetCurrentLanguage();

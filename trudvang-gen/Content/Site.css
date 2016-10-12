@@ -341,6 +341,9 @@ h4
     
 }
 
+.namelist{
+    text-transform: capitalize;
+}
 .namelist.ng-hide {
     display: block!important;
     visibility: hidden;
